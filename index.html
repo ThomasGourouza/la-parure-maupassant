@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Parure — Étude interactive</title>
+<meta name="description" content="Étude interactive de « La Parure » de Guy de Maupassant (FLE B2–C1) : texte annoté, compréhension, vocabulaire, grammaire, analyse, production écrite et orale, mode professeur.">
+<meta name="theme-color" content="#7a1f2b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%237a1f2b'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23fff' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // Applique les préférences avant l'affichage (évite le flash de thème).
+  (function () { try { var p = JSON.parse(localStorage.getItem("parure:prefs") || "{}");
+    var r = document.documentElement; if (p.theme) r.dataset.theme = p.theme; if (p.fs) r.style.setProperty("--fs", p.fs + "px");
+    if (p.airy) r.classList.add("airy"); if (p.prof) r.classList.add("prof"); if (p.noAnnot) r.classList.add("no-annot"); } catch (e) {} })();
+</script>
+</head>
+<body>
+<a class="sr" href="#main">Aller au contenu</a>
+<header class="top">
+  <div class="brand">
+    <a class="logo" href="#accueil" aria-label="Accueil">La Parure</a>
+    <span class="by">Guy de Maupassant · B2–C1</span>
+    <span class="spacer"></span>
+    <span class="badge-prof">Mode professeur</span>
+    <div class="progress-global" title="Progression globale"><span class="txt">Progression</span><span class="bar"><i id="gbar"></i></span><span id="gpct">0 %</span></div>
+  </div>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
+  <div class="toolbar" role="toolbar" aria-label="Outils">
+    <div class="inner" id="toolbar"></div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<footer class="foot">
+  Texte : Guy de Maupassant, « La Parure », <i>Contes du jour et de la nuit</i>, 1885 (domaine public, Wikisource). ·
+  <a href="pdf/La_Parure_dossier_eleve_B2-C1.pdf" download>Dossier élève (PDF)</a> ·
+  <a href="pdf/La_Parure_livret_professeur_B2-C1.pdf" download>Livret du professeur (PDF)</a>
+</footer>
+
+<aside class="panel" id="panel" aria-hidden="true" aria-labelledby="panel-k">
+  <header><span class="k" id="panel-k">Explication</span><button class="close" id="panel-close" aria-label="Fermer">×</button></header>
+  <div class="body" id="panel-body"></div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="selpop" id="selpop" role="menu" aria-label="Actions sur la sélection"></div>
+<dialog class="modal" id="modal"><header><h3 id="modal-title"></h3><button class="close tb" id="modal-close" aria-label="Fermer">×</button></header><div class="body" id="modal-body"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data/texte.js"></script>
+<script src="data/lexique.js"></script>
+<script src="data/annotations.js"></script>
+<script src="data/eleve.js"></script>
+<script src="data/prof.js"></script>
+<script src="js/app.js"></script>
+<script src="js/reader.js"></script>
+<script src="js/exercises.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/views.js"></script>
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>La Parure — Dossier pédagogique</title>
+<style>
+@page { size: A4; margin: 20mm 18mm 20mm 18mm;
+  @bottom-center { content: counter(page); font-family: "Palatino", serif; font-size: 9pt; color: #777; }
+  @top-right { content: "Maupassant · « La Parure » · B2/C1"; font-family: "Avenir Next", "Helvetica Neue", sans-serif; font-size: 7.5pt; color: #999; letter-spacing: .04em; }
+}
+@page :first { @bottom-center { content: none; } @top-right { content: none; } }
+:root { --accent: #7a1f2b; --accent-soft: #f6eeee; --ink: #1f1d1b; --muted: #6b6560; --rule: #d9d2cb; --gold: #a47c2c; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Palatino", "Book Antiqua", "Iowan Old Style", Georgia, serif; font-size: 10.6pt; line-height: 1.5; color: var(--ink); background: #fff; margin: 0; hyphens: auto; }
+h1, h2, h3, h4, .sans { font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif; }
+h2 { font-size: 19pt; color: var(--accent); margin: 0 0 4mm; padding-bottom: 2mm; border-bottom: 1.5px solid var(--accent); font-weight: 600; letter-spacing: -.01em; }
+h2 .num { color: var(--gold); margin-right: .3em; }
+h3 { font-size: 12.5pt; color: var(--accent); margin: 6mm 0 2mm; font-weight: 600; }
+h4 { font-size: 10.5pt; margin: 4mm 0 1.5mm; font-weight: 600; color: #3a3632; }
+p { margin: 0 0 2.2mm; text-align: justify; }
+.chapter { break-before: page; }
+.avoid { break-inside: avoid; }
+em.cit, .cit { font-style: italic; color: #4a2a2e; }
+.box { border: 1px solid var(--rule); border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 3mm 4mm; margin: 3mm 0 4mm; break-inside: avoid; border-radius: 0 3px 3px 0; }
+.box.gold { border-left-color: var(--gold); background: #faf6ec; }
+.box.grey { border-left-color: #8a847d; background: #f5f4f2; }
+.box-title { font-family: "Avenir Next", "Helvetica Neue", sans-serif; font-weight: 600; font-size: 9pt; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 1.5mm; }
+.box.gold .box-title { color: var(--gold); }
+.box.grey .box-title { color: #5b5650; }
+.box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 0; }
+ul, ol { margin: 0 0 2.5mm; padding-left: 6mm; }
+li { margin-bottom: 1mm; }
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9.6pt; break-inside: auto; }
+th { font-family: "Avenir Next", "Helvetica Neue", sans-serif; font-weight: 600; font-size: 8.6pt; text-align: left; background: var(--accent); color: #fff; padding: 1.6mm 2mm; }
+td { border-bottom: 1px solid var(--rule); padding: 1.4mm 2mm; vertical-align: top; }
+tr { break-inside: avoid; }
+tr:nth-child(even) td { background: #faf8f6; }
+.write { border-bottom: 1px dotted #aaa; display: inline-block; min-width: 30mm; }
+.lines { margin: 1mm 0 3mm; }
+.lines div { border-bottom: 1px dotted #b9b2ab; height: 7mm; }
+.tag { display: inline-block; font-family: "Avenir Next", sans-serif; font-size: 7.5pt; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 2mm; background: var(--gold); color: #fff; vertical-align: middle; margin-left: 1.5mm; }
+.tag.c1 { background: var(--accent); }
+.small { font-size: 9pt; color: var(--muted); }
+.cols2 { column-count: 2; column-gap: 8mm; }
+.cols2 > * { break-inside: avoid; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+
+/* Cover */
+.cover { height: 257mm; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+.cover .top { font-family: "Avenir Next", sans-serif; font-size: 9pt; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
+.cover .mid { text-align: left; border-left: 3px solid var(--accent); padding-left: 9mm; }
+.cover .author { font-family: "Avenir Next", sans-serif; font-size: 13pt; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 4mm; }
+.cover h1 { font-family: "Palatino", serif; font-size: 52pt; font-weight: normal; color: var(--accent); margin: 0; line-height: 1; font-style: italic; }
+.cover .date { font-size: 12pt; color: var(--muted); margin-top: 3mm; }
+.cover .subtitle { font-size: 15pt; margin-top: 12mm; line-height: 1.4; }
+.cover .ornament { font-size: 22pt; color: var(--gold); margin: 6mm 0; letter-spacing: .5em; }
+.cover .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; font-size: 9.5pt; border-top: 1px solid var(--rule); padding-top: 5mm; }
+.cover .meta b { display: block; font-family: "Avenir Next", sans-serif; font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1mm; }
+.toc { margin-top: 4mm; }
+.toc li { list-style: none; display: flex; justify-content: space-between; border-bottom: 1px dotted var(--rule); padding: 1.2mm 0; margin: 0; }
+.toc { padding-left: 0; }
+
+/* Text */
+.texte { font-size: 11pt; line-height: 1.62; }
+.texte h2 { text-align: center; border: none; font-family: "Palatino", serif; font-weight: normal; font-size: 22pt; letter-spacing: .2em; margin-bottom: 1mm; }
+.texte .src { text-align: center; color: var(--muted); font-size: 9pt; margin-bottom: 7mm; }
+.texte p.par { position: relative; text-indent: 6mm; margin: 0 0 1.2mm; }
+.texte p.par .n { position: absolute; left: -12mm; width: 9mm; text-align: right; text-indent: 0; font-family: "Avenir Next", sans-serif; font-size: 7.2pt; color: var(--gold); top: .45em; }
+.texte { padding-left: 10mm; }
+.texte .sep { text-align: center; color: var(--gold); margin: 3mm 0; font-size: 13pt; letter-spacing: .6em; }
+.texte .part { font-family: "Avenir Next", sans-serif; font-size: 7.5pt; letter-spacing: .15em; color: #b0a89f; text-transform: uppercase; text-align: center; margin: -2mm 0 2mm; }
+sup.fn { font-family: "Avenir Next", sans-serif; font-size: 6.5pt; color: var(--accent); font-weight: 600; margin-left: .3mm; }
+.notes { font-size: 8.8pt; line-height: 1.4; column-count: 2; column-gap: 7mm; border-top: 1px solid var(--rule); padding-top: 3mm; margin-top: 6mm; }
+.notes p { text-align: left; margin-bottom: 1.2mm; break-inside: avoid; }
+.notes b { color: var(--accent); }
+
+.qlist > li { margin-bottom: 2.4mm; }
+.corr p, .corr li { font-size: 9.8pt; }
+.corr h4 { color: var(--accent); }
+.schema { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2mm; margin: 3mm 0; }
+.schema div { border: 1px solid var(--rule); border-top: 3px solid var(--accent); padding: 2mm; font-size: 8.8pt; min-height: 30mm; background: #fcfbfa; }
+.schema div b { display: block; font-family: "Avenir Next", sans-serif; font-size: 7.6pt; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 1mm; }
+.timeline { display: flex; gap: 0; margin: 3mm 0 4mm; }
+.timeline div { flex: 1; padding: 2mm; font-size: 8.4pt; border-top: 4px solid var(--gold); margin-right: 1mm; background: #faf6ec; }
+.timeline div b { display: block; font-family: "Avenir Next", sans-serif; font-size: 7.5pt; color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- ============ COUVERTURE ============ -->
+<section class="cover">
+  <div class="top">Dossier pédagogique · Français langue étrangère · Étude de texte</div>
+  <div class="mid">
+    <div class="author">Guy de Maupassant</div>
+    <h1>La Parure</h1>
+    <div class="date">Conte paru dans <i>Le Gaulois</i>, 17 février 1884</div>
+    <div class="ornament">⁂</div>
+    <div class="subtitle">Texte intégral annoté<br>Compréhension · Vocabulaire · Grammaire<br>Explication de texte · Production écrite et orale<br>Corrigés</div>
+  </div>
+  <div>
+    <div class="meta">
+      <div><b>Niveau</b>B2 – C1 (CECRL)<br>Lycée, université, adultes</div>
+      <div><b>Durée indicative</b>4 séances de 1 h 30<br>+ travail personnel</div>
+      <div><b>Source du texte</b><i>Contes du jour et de la nuit</i>, Marpon et Flammarion, 1885 — Wikisource (domaine public)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOMMAIRE / OBJECTIFS ============ -->
+<section class="chapter">
+  <h2>Sommaire et objectifs</h2>
+  <ol class="toc">
+    <li><span>Avant la lecture : l'auteur, l'époque, le genre</span><span>§ 0</span></li>
+    <li><span>Le texte intégral annoté</span><span>Texte</span></li>
+    <li><span>1. Compréhension</span><span>Séance 1</span></li>
+    <li><span>2. Vocabulaire</span><span>Séance 1–2</span></li>
+    <li><span>3. Grammaire</span><span>Séance 2</span></li>
+    <li><span>4. Analyse littéraire et explications de texte</span><span>Séance 3</span></li>
+    <li><span>5. Production écrite</span><span>Séance 4</span></li>
+    <li><span>6. Production orale</span><span>Séance 4</span></li>
+    <li><span>Corrigés et éléments de réponse</span><span>Annexe</span></li>
+    <li><span>Pour aller plus loin</span><span>Annexe</span></li>
+  </ol>
+
+  <h3>Objectifs</h3>
+  <div class="grid2">
+    <div class="box">
+      <div class="box-title">Objectifs linguistiques</div>
+      <ul>
+        <li>Enrichir le lexique de l'apparence, du luxe, de la pauvreté et de l'argent.</li>
+        <li>Maîtriser l'opposition passé simple / imparfait et le rôle du plus-que-parfait dans le récit.</li>
+        <li>Passer du discours direct au discours indirect ; reconnaître le discours indirect libre.</li>
+        <li>Exprimer l'hypothèse, le regret et le souhait (conditionnel, subjonctif).</li>
+        <li>Repérer les registres de langue (familier, courant, soutenu).</li>
+      </ul>
+    </div>
+    <div class="box gold">
+      <div class="box-title">Objectifs littéraires et culturels</div>
+      <ul>
+        <li>Découvrir Maupassant et l'esthétique réaliste.</li>
+        <li>Analyser la structure d'une nouvelle à chute.</li>
+        <li>Étudier le point de vue narratif et l'ironie.</li>
+        <li>Mener une explication linéaire (méthode française).</li>
+        <li>Argumenter sur un sujet de société : apparence, consommation, statut social.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Déroulement proposé</h3>
+  <table>
+    <tr><th style="width:16%">Séance</th><th style="width:42%">En classe</th><th>Travail personnel</th></tr>
+    <tr><td><b>1</b></td><td>Anticipation (titre, contexte). Lecture expressive des parties I à IV. Compréhension globale. Glossaire.</td><td>Lire la fin du conte. Exercices de vocabulaire 1 à 3.</td></tr>
+    <tr><td><b>2</b></td><td>Compréhension détaillée, vrai/faux, schéma narratif. Grammaire : temps du récit, discours rapporté.</td><td>Exercices de grammaire. Relire l'incipit à voix haute.</td></tr>
+    <tr><td><b>3</b></td><td>Explication linéaire de l'incipit (collective) ; explication du dénouement (en groupes). Axes de lecture.</td><td>Préparer un sujet de production écrite.</td></tr>
+    <tr><td><b>4</b></td><td>Production orale : débat, jeu de rôle, exposés. Retour sur les écrits.</td><td>Rendre la production écrite finale.</td></tr>
+  </table>
+
+  <div class="box grey">
+    <div class="box-title">Conventions</div>
+    <p>Les paragraphes du texte sont numérotés en marge (§ 1 à § 129). Les questions y renvoient. Les sept parties du conte sont séparées dans l'original par le signe <b>⁂</b> (astérisme). Les mots suivis d'un petit chiffre sont expliqués dans les notes, à la fin du texte.</p>
+  </div>
+
+  <div class="box grey">
+    <div class="box-title">Les personnages</div>
+    <table style="margin:0">
+      <tr><th style="width:28%">Personnage</th><th>Qui est-ce ?</th></tr>
+      <tr><td><b>Mathilde Loisel</b></td><td>Jeune femme belle et pauvre, mariée à un petit employé. Elle rêve de luxe.</td></tr>
+      <tr><td><b>M. Loisel</b></td><td>Son mari, commis au ministère de l'Instruction publique. Simple, économe, dévoué.</td></tr>
+      <tr><td><b>Mme Jeanne Forestier</b></td><td>Amie riche de Mathilde, ancienne camarade de couvent (pensionnat religieux).</td></tr>
+      <tr><td>Personnages secondaires</td><td>La petite bonne bretonne ; le ministre et Mme Georges Ramponneau ; les joailliers ; les usuriers.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ AVANT LA LECTURE ============ -->
+<section class="chapter">
+  <h2><span class="num">0</span>Avant la lecture</h2>
+
+  <h3>Guy de Maupassant (1850 – 1893)</h3>
+  <p>Né en Normandie en 1850, Guy de Maupassant grandit entre Étretat et Rouen. Après la guerre de 1870, il s'installe à Paris et devient, pendant près de dix ans, <b>petit employé de bureau</b> : d'abord au ministère de la Marine, puis au <b>ministère de l'Instruction publique</b>, c'est-à-dire exactement le ministère où travaille M. Loisel. Il connaît donc de l'intérieur le monde des « commis », leurs salaires modestes, leurs ambitions et leur ennui.</p>
+  <p>Son maître en littérature est <b>Gustave Flaubert</b>, ami de sa mère, qui lui apprend l'observation exacte et le travail du style. En 1880, la nouvelle <i>Boule de suif</i>, publiée dans le recueil collectif <i>Les Soirées de Médan</i> autour de Zola, le rend célèbre. Commence alors une décennie de production intense : environ <b>trois cents contes et nouvelles</b>, souvent publiés d'abord dans des journaux (<i>Le Gaulois</i>, <i>Gil Blas</i>), et six romans, dont <i>Une vie</i> (1883), <i>Bel-Ami</i> (1885) et <i>Pierre et Jean</i> (1888). Atteint d'une maladie qui le conduit à la folie, il meurt à Paris en 1893, à 42 ans.</p>
+
+  <h3>Le contexte : Paris sous la Troisième République</h3>
+  <ul>
+    <li><b>La petite bourgeoisie des employés</b> : fonctionnaires mal payés, qui doivent pourtant « tenir leur rang » et imiter le mode de vie bourgeois.</li>
+    <li><b>Les soirées officielles</b> : les ministères organisent des bals et des réceptions. Y être invité est un honneur et une occasion de se montrer.</li>
+    <li><b>L'argent et le crédit</b> : sans banques accessibles aux petites gens, on emprunte à des particuliers ou à des <b>usuriers</b>, qui prêtent à des taux très élevés.</li>
+    <li><b>La condition des femmes</b> : une jeune fille sans <b>dot</b> (argent apporté par l'épouse au mariage) ne peut guère espérer un « beau mariage ». La femme mariée ne travaille pas hors de chez elle dans ce milieu ; sa seule « carrière » est sociale.</li>
+  </ul>
+
+  <h3>Le genre : le conte et la nouvelle réaliste</h3>
+  <p>Maupassant emploie indifféremment les mots <i>conte</i> et <i>nouvelle</i>. Il s'agit d'un <b>récit bref</b>, publié dans la presse, qui présente peu de personnages, une action resserrée et, souvent, une <b>chute</b> (une fin inattendue qui oblige à relire tout le récit autrement). Le <b>réalisme</b> veut représenter la société telle qu'elle est, avec ses détails concrets (objets, sommes d'argent, lieux réels de Paris), sans idéaliser.</p>
+
+  <div class="box gold">
+    <div class="box-title">Activité d'anticipation (oral, 15 min)</div>
+    <ol>
+      <li>Cherchez le sens du mot <b>« parure »</b>. Quel verbe reconnaissez-vous dans ce nom ? Quel rapport voyez-vous avec le verbe <i>paraître</i> ?</li>
+      <li>À partir du titre et du contexte ci-dessus, imaginez l'histoire en trois phrases.</li>
+      <li>Selon vous, pourquoi les gens veulent-ils parfois paraître plus riches qu'ils ne le sont ? Donnez des exemples d'aujourd'hui.</li>
+      <li>Avez-vous déjà emprunté un objet précieux ? Que ressent-on quand on a peur de l'abîmer ?</li>
+    </ol>
+  </div>
+
+</section>
+
+<!-- ============ TEXTE ============ -->
+<section class="chapter texte">
+  <h2>LA PARURE</h2>
+  <div class="src">Guy de Maupassant · <i>Contes du jour et de la nuit</i>, 1885 · texte intégral</div>
+  {{TEXTE}}
+  <div class="notes">
+    {{NOTES}}
+  </div>
+</section>
+
+<!-- ============ 1. COMPRÉHENSION ============ -->
+<section class="chapter">
+  <h2><span class="num">1</span>Compréhension</h2>
+
+  <h3>A. Compréhension globale <span class="tag">B2</span></h3>
+  <ol class="qlist">
+    <li>Qui sont les trois personnages principaux ? Présentez chacun en une phrase.</li>
+    <li>Où se passe l'histoire ? Relevez au moins quatre lieux réels de Paris.</li>
+    <li>Combien de temps dure l'action au total ? Quel passage du texte le montre ?</li>
+    <li>Le conte est divisé en sept parties par le signe ⁂. Donnez un titre à chacune.
+      <table>
+        <tr><th style="width:18%">Partie</th><th style="width:16%">§</th><th>Titre proposé</th></tr>
+        <tr><td>I</td><td>1 – 6</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+        <tr><td>II</td><td>7 – 29</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+        <tr><td>III</td><td>30 – 52</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+        <tr><td>IV</td><td>53 – 85</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+        <tr><td>V</td><td>86 – 98</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+        <tr><td>VI</td><td>99 – 106</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+        <tr><td>VII</td><td>107 – 129</td><td><span class="write" style="min-width:90mm">&nbsp;</span></td></tr>
+      </table>
+    </li>
+    <li>Résumez l'histoire en cinq phrases maximum, au présent.</li>
+  </ol>
+
+  <h3>B. Compréhension détaillée <span class="tag">B2</span><span class="tag c1">C1</span></h3>
+
+  <h4>Partie I (§ 1–6) : le portrait de Mathilde</h4>
+  <ol class="qlist" start="6">
+    <li>Pourquoi Mathilde n'a-t-elle pas pu épouser « un homme riche et distingué » ? Relevez deux raisons.</li>
+    <li>Selon le narrateur (§ 2), qu'est-ce qui remplace la naissance et la famille chez les femmes ? Êtes-vous d'accord avec cette idée ?</li>
+    <li>De quoi Mathilde souffre-t-elle concrètement (§ 3) ? À quoi rêve-t-elle ? Faites deux listes.</li>
+    <li>Que révèle la phrase de son mari : « Ah ! le bon pot-au-feu ! je ne sais rien de meilleur que cela… » (§ 4) ?</li>
+    <li>Pourquoi Mathilde ne va-t-elle plus voir son amie riche (§ 6) ?</li>
+  </ol>
+
+  <h4>Parties II et III (§ 7–52) : l'invitation et les préparatifs</h4>
+  <ol class="qlist" start="11">
+    <li>Quelle réaction le mari attend-il en apportant l'invitation ? Quelle est la réaction réelle de Mathilde ?</li>
+    <li>Quel sacrifice M. Loisel fait-il pour la robe (§ 26–28) ? Le dit-il à sa femme ?</li>
+    <li>Pourquoi Mathilde est-elle encore malheureuse quand la robe est prête ? Quelle solution propose d'abord le mari ? Pourquoi est-elle refusée ?</li>
+    <li>Décrivez la scène chez Mme Forestier (§ 43–52). Quels détails montrent l'émotion de Mathilde devant la rivière de diamants ?</li>
+    <li>Mme Forestier hésite-t-elle à prêter le bijou ? Qu'en concluez-vous, avec le recul de la fin ?</li>
+  </ol>
+
+  <h4>Partie IV (§ 53–85) : le bal et la perte</h4>
+  <ol class="qlist" start="16">
+    <li>Quels mots montrent le succès de Mathilde au bal ? Que fait son mari pendant ce temps ?</li>
+    <li>Pourquoi Mathilde veut-elle partir très vite (§ 56) ?</li>
+    <li>À quel moment s'aperçoit-elle de la perte ? Pourquoi ce moment est-il ironique ?</li>
+    <li>Énumérez toutes les démarches de M. Loisel pour retrouver le bijou.</li>
+    <li>Quel mensonge les Loisel inventent-ils (§ 84) ? Pourquoi ?</li>
+  </ol>
+
+  <h4>Partie V (§ 86–98) : le remplacement</h4>
+  <ol class="qlist" start="21">
+    <li>Que signifie l'expression « Loisel, vieilli de cinq ans » (§ 87) ?</li>
+    <li>Combien coûte la nouvelle rivière ? Comment Loisel trouve-t-il cet argent ?</li>
+    <li>Quelle est la réaction de Mme Forestier quand Mathilde rapporte le bijou ? Pourquoi Mathilde a-t-elle peur (§ 98) ?</li>
+  </ol>
+
+  <h4>Partie VI (§ 99–106) : les dix ans de misère</h4>
+  <ol class="qlist" start="24">
+    <li>Quels changements concrets la dette impose-t-elle au couple ? Faites une liste.</li>
+    <li>Comment Mathilde a-t-elle changé physiquement et moralement après dix ans ?</li>
+    <li>Pourquoi le narrateur emploie-t-il l'adverbe « héroïquement » (§ 99) ? Est-ce sérieux ou ironique ? Justifiez.</li>
+  </ol>
+
+  <h4>Partie VII (§ 107–129) : la révélation</h4>
+  <ol class="qlist" start="27">
+    <li>Comparez l'apparence des deux femmes au moment de la rencontre.</li>
+    <li>Pourquoi Mme Forestier ne reconnaît-elle pas Mathilde ? Comment l'appelle-t-elle d'abord ?</li>
+    <li>Quel sentiment éprouve Mathilde en racontant son histoire (§ 127) ?</li>
+    <li>Expliquez la dernière phrase. Pourquoi peut-on parler de « chute » ?</li>
+    <li><span class="tag c1">C1</span> Le texte ne dit pas comment Mathilde réagit à la révélation. Pourquoi, selon vous, Maupassant s'arrête-t-il là ?</li>
+  </ol>
+
+  <h3 class="avoid">C. Vrai ou faux ? Justifiez avec une citation.</h3>
+  <table>
+    <tr><th style="width:62%">Affirmation</th><th style="width:10%">V / F</th><th>Justification (§)</th></tr>
+    <tr><td>1. Mathilde est née dans une famille riche, mais ruinée.</td><td></td><td></td></tr>
+    <tr><td>2. Mathilde a une domestique.</td><td></td><td></td></tr>
+    <tr><td>3. M. Loisel a obtenu l'invitation facilement.</td><td></td><td></td></tr>
+    <tr><td>4. Mathilde choisit tout de suite la rivière de diamants.</td><td></td><td></td></tr>
+    <tr><td>5. M. Loisel s'est beaucoup amusé au bal.</td><td></td><td></td></tr>
+    <tr><td>6. Les Loisel ont noté le numéro du fiacre.</td><td></td><td></td></tr>
+    <tr><td>7. Le bijoutier dont le nom figure dans la boîte a vendu la rivière.</td><td></td><td></td></tr>
+    <tr><td>8. Mme Forestier a vérifié le contenu de l'écrin.</td><td></td><td></td></tr>
+    <tr><td>9. Il a fallu dix ans pour rembourser la dette.</td><td></td><td></td></tr>
+    <tr><td>10. À la fin, Mme Forestier a beaucoup vieilli, elle aussi.</td><td></td><td></td></tr>
+  </table>
+
+  <h3 class="avoid">D. Le schéma narratif</h3>
+  <p>Complétez le schéma en indiquant les paragraphes et un résumé d'une ligne pour chaque étape.</p>
+  <div class="schema avoid">
+    <div><b>Situation initiale</b>§ …… <br><br></div>
+    <div><b>Élément perturbateur</b>§ …… <br><br></div>
+    <div><b>Péripéties</b>§ …… <br><br></div>
+    <div><b>Élément de résolution</b>§ …… <br><br></div>
+    <div><b>Situation finale / chute</b>§ …… <br><br></div>
+  </div>
+</section>
+
+<!-- ============ 2. VOCABULAIRE ============ -->
+<section class="chapter">
+  <h2><span class="num">2</span>Vocabulaire</h2>
+
+  <h3>A. Glossaire du texte</h3>
+  <table>
+    <tr><th style="width:22%">Mot ou expression</th><th style="width:6%">§</th><th>Sens dans le texte</th></tr>
+    <tr><td><b>une parure</b></td><td>titre</td><td>Ensemble de bijoux assortis ; plus largement, ce qui sert à embellir (de <i>parer</i>, orner).</td></tr>
+    <tr><td><b>la dot</b></td><td>1</td><td>Biens ou argent qu'une femme apportait à son mari en se mariant.</td></tr>
+    <tr><td><b>des espérances</b> (f. pl.)</td><td>1</td><td>Ici : un héritage futur attendu (sens ancien).</td></tr>
+    <tr><td><b>un commis</b></td><td>1</td><td>Employé subalterne de bureau ou de commerce.</td></tr>
+    <tr><td><b>parée</b></td><td>2</td><td>Ornée, embellie de vêtements et de bijoux.</td></tr>
+    <tr><td><b>une déclassée</b></td><td>2</td><td>Personne qui a perdu (ou croit avoir perdu) sa place dans la société.</td></tr>
+    <tr><td><b>la caste</b></td><td>2</td><td>Groupe social fermé, classe.</td></tr>
+    <tr><td><b>une étoffe</b></td><td>3</td><td>Tissu.</td></tr>
+    <tr><td><b>une antichambre</b></td><td>3</td><td>Pièce d'attente avant un salon ou un bureau.</td></tr>
+    <tr><td><b>capitonné(e)</b></td><td>3</td><td>Rembourré, recouvert d'un tissu épais et doux.</td></tr>
+    <tr><td><b>une torchère</b></td><td>3</td><td>Grand chandelier sur pied.</td></tr>
+    <tr><td><b>un valet</b></td><td>3</td><td>Domestique masculin.</td></tr>
+    <tr><td><b>le calorifère</b></td><td>3</td><td>Appareil de chauffage central (XIX<sup>e</sup> siècle).</td></tr>
+    <tr><td><b>un bibelot</b></td><td>3</td><td>Petit objet décoratif.</td></tr>
+    <tr><td><b>la causerie</b></td><td>3</td><td>Conversation familière et agréable.</td></tr>
+    <tr><td><b>le pot-au-feu</b></td><td>4</td><td>Plat populaire de bœuf bouilli avec des légumes.</td></tr>
+    <tr><td><b>la gélinotte</b></td><td>4</td><td>Petit oiseau sauvage, gibier de luxe.</td></tr>
+    <tr><td><b>une toilette</b></td><td>5</td><td>Ici : une robe élégante, une tenue de soirée.</td></tr>
+    <tr><td><b>le dépit</b></td><td>11</td><td>Irritation mêlée de déception.</td></tr>
+    <tr><td><b>balbutier, bégayer</b></td><td>16, 18</td><td>Parler avec difficulté, en hésitant.</td></tr>
+    <tr><td><b>nippé(e)</b> <i>(fam.)</i></td><td>21</td><td>Habillé(e). <i>Mieux nippée</i> = mieux habillée.</td></tr>
+    <tr><td><b>effaré(e)</b></td><td>24</td><td>Affolé, très surpris et effrayé.</td></tr>
+    <tr><td><b>une rivière de diamants</b></td><td>48</td><td>Collier composé d'une rangée de diamants.</td></tr>
+    <tr><td><b>la gorge</b></td><td>48</td><td>Ici : le cou et le haut de la poitrine.</td></tr>
+    <tr><td><b>grisé(e)</b></td><td>54</td><td>Excité, comme un peu ivre.</td></tr>
+    <tr><td><b>jurer avec</b></td><td>56</td><td>Contraster de manière choquante, ne pas aller avec.</td></tr>
+    <tr><td><b>un fiacre, un coupé</b></td><td>58, 60</td><td>Voitures à cheval de location (taxis de l'époque).</td></tr>
+    <tr><td><b>noctambule</b></td><td>60</td><td>Qui sort, qui circule la nuit.</td></tr>
+    <tr><td><b>atterré(e)</b></td><td>77</td><td>Abattu, consterné.</td></tr>
+    <tr><td><b>se retourner</b></td><td>84</td><td>Ici : avoir le temps de trouver une solution.</td></tr>
+    <tr><td><b>aviser à</b></td><td>88</td><td>Réfléchir à, chercher le moyen de.</td></tr>
+    <tr><td><b>l'écrin</b> (m.)</td><td>90</td><td>Petite boîte pour ranger un bijou.</td></tr>
+    <tr><td><b>un louis</b></td><td>95</td><td>Pièce d'or de 20 francs.</td></tr>
+    <tr><td><b>un billet</b></td><td>95</td><td>Ici : une reconnaissance de dette écrite (billet à ordre).</td></tr>
+    <tr><td><b>un usurier</b></td><td>95</td><td>Personne qui prête de l'argent à un taux d'intérêt excessif.</td></tr>
+    <tr><td><b>faire honneur à sa signature</b></td><td>95</td><td>Payer ce qu'on a promis par écrit.</td></tr>
+    <tr><td><b>froissé(e)</b></td><td>96</td><td>Vexé, un peu blessé dans son amour-propre.</td></tr>
+    <tr><td><b>les nécessiteux</b></td><td>99</td><td>Les pauvres, ceux qui manquent du nécessaire.</td></tr>
+    <tr><td><b>prendre son parti (de qqch)</b></td><td>99</td><td>Accepter une situation et décider d'agir.</td></tr>
+    <tr><td><b>une mansarde</b></td><td>99</td><td>Petite chambre sous le toit.</td></tr>
+    <tr><td><b>une besogne</b></td><td>100</td><td>Travail pénible, tâche.</td></tr>
+    <tr><td><b>marchander</b></td><td>100</td><td>Discuter le prix pour l'obtenir moins cher.</td></tr>
+    <tr><td><b>mettre au net</b></td><td>102</td><td>Recopier proprement, mettre en ordre.</td></tr>
+    <tr><td><b>le taux de l'usure</b></td><td>104</td><td>Taux d'intérêt excessif imposé par les usuriers.</td></tr>
+    <tr><td><b>rudement</b> <i>(fam.)</i></td><td>123</td><td>Très. <i>Rudement contente</i> = très contente.</td></tr>
+  </table>
+
+  <h3>B. Exercices</h3>
+
+  <h4>Exercice 1 — Deux champs lexicaux</h4>
+  <p>Classez les mots et expressions suivants dans le tableau. Que remarquez-vous sur la place de chaque champ lexical dans le récit ?</p>
+  <p class="cit" style="font-style:normal">tentures orientales · nappe de trois jours · argenteries reluisantes · mansarde · fourrures · pot-au-feu · bibelots inestimables · poteries grasses · soie ancienne · ordures · torchères de bronze · mains rouges · truite · vêtements modestes · usure des sièges · rivière de diamants</p>
+  <table>
+    <tr><th>Le luxe (le rêve)</th><th>La pauvreté (la réalité)</th></tr>
+    <tr><td style="height:24mm"></td><td></td></tr>
+  </table>
+
+  <h4>Exercice 2 — Associez chaque mot à sa définition</h4>
+  <div class="grid2">
+    <ol>
+      <li>le dépit</li><li>atterré</li><li>une mansarde</li><li>marchander</li><li>un écrin</li><li>froissé</li><li>une besogne</li><li>effaré</li>
+    </ol>
+    <ol type="a">
+      <li>un travail pénible</li><li>une boîte à bijoux</li><li>affolé, effrayé</li><li>vexé</li><li>une petite chambre sous le toit</li><li>une irritation mêlée de déception</li><li>discuter un prix</li><li>consterné, abattu</li>
+    </ol>
+  </div>
+
+  <h4>Exercice 3 — Complétez avec un mot du glossaire (accordez si nécessaire)</h4>
+  <p class="small">Mots : écrin · usurier · dot · prendre son parti · se retourner · jurer · parure · grisé</p>
+  <ol>
+    <li>Autrefois, une jeune fille sans …………… avait peu de chances d'épouser un homme riche.</li>
+    <li>Ses vieilles chaussures …………… avec sa robe de soirée.</li>
+    <li>Ne pouvant obtenir de prêt à la banque, il a dû s'adresser à un …………… .</li>
+    <li>Après son licenciement, elle a vite …………… et a cherché un nouveau travail.</li>
+    <li>Le joaillier a rangé la bague dans un …………… de velours.</li>
+    <li>…………… par le succès, l'acteur a oublié de remercier son équipe.</li>
+    <li>Donnez-nous une semaine pour …………… : nous trouverons l'argent.</li>
+    <li>Pour le mariage, la mariée portait une …………… de perles.</li>
+  </ol>
+
+  <h4>Exercice 4 — Familles de mots</h4>
+  <table>
+    <tr><th>Verbe</th><th>Nom</th><th>Adjectif / participe</th></tr>
+    <tr><td>parer</td><td>une parure</td><td>……………</td></tr>
+    <tr><td>……………</td><td>la ruine</td><td>ruineux</td></tr>
+    <tr><td>emprunter</td><td>……………</td><td>—</td></tr>
+    <tr><td>……………</td><td>l'humiliation</td><td>humiliant</td></tr>
+    <tr><td>envier</td><td>……………</td><td>……………</td></tr>
+    <tr><td>désespérer</td><td>……………</td><td>désespéré</td></tr>
+    <tr><td>……………</td><td>le séducteur / la séduction</td><td>séduisant</td></tr>
+  </table>
+
+  <h4>Exercice 5 — Les registres de langue <span class="tag c1">C1</span></h4>
+  <p>Ces expressions appartiennent au registre <b>familier</b>. Qui les prononce ? Réécrivez-les en registre <b>courant</b> puis <b>soutenu</b>. Que révèle ce choix de langue sur les personnages ?</p>
+  <table>
+    <tr><th style="width:30%">Familier</th><th style="width:8%">§</th><th>Courant</th><th>Soutenu</th></tr>
+    <tr><td>une femme mieux nippée</td><td>21</td><td></td><td></td></tr>
+    <tr><td>J'aurai l'air misère comme tout.</td><td>33</td><td></td><td></td></tr>
+    <tr><td>Tu es toute drôle.</td><td>31</td><td></td><td></td></tr>
+    <tr><td>Que tu es bête !</td><td>39</td><td></td><td></td></tr>
+    <tr><td>Je suis rudement contente.</td><td>123</td><td></td><td></td></tr>
+  </table>
+
+  <h4>Exercice 6 — Expressions idiomatiques</h4>
+  <p>Expliquez puis employez chaque expression dans une phrase personnelle.</p>
+  <ul class="cols2">
+    <li><i>sauter au cou de quelqu'un</i> (§ 52)</li>
+    <li><i>attraper froid</i> (§ 58)</li>
+    <li><i>avoir affaire à quelqu'un</i> (§ 95)</li>
+    <li><i>par-ci, par-là</i> (§ 95)</li>
+    <li><i>prendre son parti</i> (§ 99)</li>
+    <li><i>défendre son argent sou à sou</i> (§ 100)</li>
+    <li><i>à grande eau</i> (§ 105)</li>
+    <li><i>il faut peu de chose pour…</i> (§ 106)</li>
+  </ul>
+</section>
+
+<!-- ============ 3. GRAMMAIRE ============ -->
+<section class="chapter">
+  <h2><span class="num">3</span>Grammaire</h2>
+
+  <h3>A. Les temps du récit : passé simple et imparfait</h3>
+  <div class="box">
+    <div class="box-title">Rappel</div>
+    <table style="margin:0">
+      <tr><th style="width:50%">Passé simple</th><th>Imparfait</th></tr>
+      <tr><td>Action <b>ponctuelle, achevée</b>, au premier plan ; fait avancer l'histoire.<br><i>« Elle <u>poussa</u> un cri de joie. »</i> (§ 40)</td><td><b>Arrière-plan</b> : description, décor, état, habitude, action en cours.<br><i>« Elle <u>souffrait</u> sans cesse. »</i> (§ 3)</td></tr>
+      <tr><td>Succession d'actions :<br><i>« [Mme Forestier] <u>alla</u> vers son armoire à glace, <u>prit</u> un large coffret, l'<u>apporta</u>, l'<u>ouvrit</u>… »</i> (§ 43)</td><td>Action interrompue par une autre :<br><i>« Il <u>se tut</u> […] en voyant que sa femme <u>pleurait</u>. »</i> (§ 18)</td></tr>
+    </table>
+    <p class="small" style="margin-top:2mm">Le passé simple est un temps de l'écrit littéraire. À l'oral, on utilise le passé composé.</p>
+  </div>
+
+  <h4>Exercice 1 — Relevé</h4>
+  <p>Dans les § 53 et 54 (le bal), relevez les verbes conjugués et classez-les. Pourquoi le § 54 ne contient-il presque pas de verbe conjugué ? Quel effet produit ce choix ?</p>
+
+  <h4>Exercice 2 — Conjuguez les verbes au passé simple, à l'imparfait ou au plus-que-parfait</h4>
+  <div class="box grey">
+    <p>Mais elle ne l'(écouter) …………… point et (descendre) …………… rapidement l'escalier. Lorsqu'ils (être) …………… dans la rue, ils ne (trouver) …………… pas de voiture ; et ils (se mettre) …………… à chercher, criant après les cochers qu'ils (voir) …………… passer de loin.</p>
+    <p>Ils (descendre) …………… vers la Seine, désespérés, grelottants. Enfin, ils (trouver) …………… sur le quai un de ces vieux coupés noctambules.</p>
+    <p>Il les (ramener) …………… jusqu'à leur porte, rue des Martyrs, et ils (remonter) …………… tristement chez eux. C'(être) …………… fini, pour elle. Et il (songer) ……………, lui, qu'il lui faudrait être au Ministère à dix heures.</p>
+    <p>Elle (ôter) …………… les vêtements dont elle (s'envelopper) …………… les épaules, devant la glace. Mais soudain elle (pousser) …………… un cri. Elle n'(avoir) …………… plus sa rivière autour du cou !</p>
+  </div>
+  <p class="small">Vérifiez ensuite avec le texte original (§ 59 à 62). Justifiez chaque choix.</p>
+
+  <h4>Exercice 3 — Passé simple ou imparfait pour une habitude ? <span class="tag c1">C1</span></h4>
+  <p>Au § 100, on lit : <i>« elle <u>descendit</u> à la rue, chaque matin, les ordures, et <u>monta</u> l'eau »</i>. Normalement, une action répétée s'exprime à l'imparfait. Pourquoi Maupassant choisit-il le passé simple ? Comparez avec <i>« elle <u>lavait</u> à grande eau les planchers »</i> (§ 105).</p>
+
+  <h3>B. Le plus-que-parfait et la chronologie</h3>
+  <p>Le plus-que-parfait exprime une action <b>antérieure</b> à une autre action passée. Expliquez la valeur du plus-que-parfait dans ces phrases :</p>
+  <ol>
+    <li><i>« Il n'y <u>avait</u> pas <u>songé</u> ; il balbutia… »</i> (§ 16)</li>
+    <li><i>« Mais, par un effort violent, elle <u>avait dompté</u> sa peine… »</i> (§ 20)</li>
+    <li><i>« Au bout d'une semaine, ils <u>avaient perdu</u> toute espérance. »</i> (§ 86)</li>
+    <li><i>« Elle songeait à cette soirée d'autrefois, à ce bal, où elle <u>avait été</u> si belle… »</i> (§ 105)</li>
+  </ol>
+  <p><b>Exercice 4 —</b> Reliez les deux phrases en une seule, en utilisant le plus-que-parfait et le connecteur indiqué.</p>
+  <ol>
+    <li>Loisel économise quatre cents francs. Il les donne à sa femme. <i>(qu'il)</i></li>
+    <li>Mathilde emprunte une rivière. Elle la perd après le bal. <i>(qu'elle)</i></li>
+    <li>Loisel refait tout le chemin. Il rentre à sept heures sans rien trouver. <i>(après avoir… / alors que)</i></li>
+    <li>Les Loisel remboursent la dette. Mathilde rencontre Mme Forestier. <i>(quand)</i></li>
+  </ol>
+
+  <h3>C. Le discours rapporté</h3>
+  <div class="box">
+    <div class="box-title">Trois manières de rapporter des paroles ou des pensées</div>
+    <table style="margin:0">
+      <tr><th style="width:22%">Type</th><th style="width:40%">Caractéristiques</th><th>Exemple</th></tr>
+      <tr><td><b>Discours direct</b></td><td>Paroles citées telles quelles ; tirets ou guillemets ; verbe introducteur.</td><td><i>« — Tiens, dit-il, voici quelque chose pour toi. »</i> (§ 8)</td></tr>
+      <tr><td><b>Discours indirect</b></td><td>Subordonnée après un verbe de parole ; changements de personnes, de temps et d'indicateurs.</td><td><i>« Il faut […] écrire à ton amie que tu as brisé la fermeture de sa rivière. »</i> (§ 84)</td></tr>
+      <tr><td><b>Discours indirect libre</b></td><td>Pensées du personnage intégrées au récit, sans verbe introducteur ni subordination ; temps du récit, mais ponctuation et ton du personnage.</td><td><i>« Il fallait payer cette dette effroyable. Elle payerait. »</i> (§ 99)</td></tr>
+    </table>
+  </div>
+
+  <div class="box gold">
+    <div class="box-title">La concordance des temps (verbe introducteur au passé)</div>
+    <table style="margin:0">
+      <tr><th>Discours direct</th><th>Discours indirect</th></tr>
+      <tr><td>présent : « Je n'ai pas de toilette. »</td><td>imparfait : Elle dit qu'elle n'avait pas de toilette.</td></tr>
+      <tr><td>passé composé : « Je l'ai perdue. »</td><td>plus-que-parfait : Elle avoua qu'elle l'avait perdue.</td></tr>
+      <tr><td>futur : « Tu verras le monde officiel. »</td><td>conditionnel présent : Il dit qu'elle verrait le monde officiel.</td></tr>
+      <tr><td>impératif : « Choisis. »</td><td>de + infinitif : Elle lui dit de choisir.</td></tr>
+      <tr><td>question totale : « Peux-tu me prêter cela ? »</td><td>si : Elle demanda si elle pouvait lui prêter cela.</td></tr>
+    </table>
+  </div>
+
+  <h4>Exercice 5 — Transformez au discours indirect (verbe introducteur au passé)</h4>
+  <ol>
+    <li>« Que veux-tu que je me mette sur le dos pour aller là ? » demanda-t-elle.</li>
+    <li>« Tu mettras des fleurs naturelles. C'est très chic en cette saison-ci », reprit-il.</li>
+    <li>« Va trouver ton amie Mme Forestier et demande-lui de te prêter des bijoux », s'écria-t-il.</li>
+    <li>« Tu es sûre que tu l'avais encore en quittant le bal ? » demandait-il.</li>
+    <li>« Tu aurais dû me la rendre plus tôt, car je pouvais en avoir besoin », dit Mme Forestier.</li>
+    <li>« Je t'en ai rapporté une autre toute pareille. Voilà dix ans que nous la payons », expliqua Mathilde.</li>
+  </ol>
+
+  <h4>Exercice 6 — Repérez le discours indirect libre <span class="tag c1">C1</span></h4>
+  <p>Relisez les § 98, 106 et 108. Qui « parle » dans ces passages : le narrateur ou le personnage ? Quels indices le montrent (ponctuation, questions, adverbes) ? Réécrivez le § 108 au discours direct, puis au discours indirect.</p>
+
+  <h3>D. Hypothèse, regret et souhait</h3>
+  <h4>Le système hypothétique avec <i>si</i></h4>
+  <table>
+    <tr><th style="width:36%">Si + …</th><th style="width:30%">Proposition principale</th><th>Valeur</th></tr>
+    <tr><td>si + présent</td><td>futur / présent</td><td>possible</td></tr>
+    <tr><td>si + imparfait</td><td>conditionnel présent</td><td>hypothèse sur le présent (irréel du présent)</td></tr>
+    <tr><td>si + plus-que-parfait</td><td>conditionnel passé</td><td>hypothèse sur le passé (irréel du passé)</td></tr>
+  </table>
+  <p>Trois exemples dans le texte : <i>« Si tu l'<u>avais perdue</u> dans la rue, nous l'<u>aurions entendue</u> tomber »</i> (§ 73) · <i>« Si elle s'<u>était aperçue</u> de la substitution, qu'<u>aurait</u>-elle <u>pensé</u> ? »</i> (§ 98) · <i>« Que <u>serait</u>-il <u>arrivé</u> si elle n'<u>avait</u> point <u>perdu</u> cette parure ? »</i> (§ 106)</p>
+
+  <h4>Exercice 7 — Imaginez d'autres destins (irréel du passé)</h4>
+  <ol>
+    <li>Si Mathilde avait épousé un homme riche, …</li>
+    <li>Si Loisel n'avait pas obtenu l'invitation, …</li>
+    <li>Si les Loisel avaient pris le numéro du fiacre, …</li>
+    <li>Si Mathilde avait dit la vérité à son amie, …</li>
+    <li>Si Mme Forestier avait ouvert l'écrin, …</li>
+  </ol>
+
+  <h4>Exercice 8 — Formes littéraires du subjonctif <span class="tag c1">C1</span></h4>
+  <p>Le français littéraire du XIX<sup>e</sup> siècle emploie le <b>subjonctif plus-que-parfait</b> avec une valeur de conditionnel passé. Réécrivez ces phrases en français courant d'aujourd'hui :</p>
+  <ol>
+    <li><i>« Elle <u>eût</u> tant <u>désiré</u> plaire, être enviée, être séduisante et recherchée. »</i> (§ 5)</li>
+    <li><i>« … comme s'ils <u>eussent été</u> honteux de leur misère pendant le jour. »</i> (§ 60)</li>
+  </ol>
+
+  <h4>Exercice 9 — Le subjonctif après la volonté et le sentiment</h4>
+  <p><i>« Que veux-tu que je <u>fasse</u> de cela ? »</i> (§ 12). Complétez avec le verbe au subjonctif présent.</p>
+  <ol>
+    <li>Loisel voudrait que sa femme (être) …………… heureuse.</li>
+    <li>Mathilde a peur que son amie (s'apercevoir) …………… de la substitution.</li>
+    <li>Il faut que nous (rembourser) …………… cette dette.</li>
+    <li>Mme Forestier est surprise que Mathilde (avoir) …………… tant changé.</li>
+    <li>Il est dommage qu'elle ne lui (dire) …………… pas la vérité dès le début.</li>
+  </ol>
+
+  <h3>E. Les phrases exclamatives et la ponctuation expressive</h3>
+  <p>Relevez dans les § 66–68, 106 et 116–129 les points d'exclamation et de suspension. Quels sentiments expriment-ils ? Pourquoi la dernière phrase du conte se termine-t-elle par <b>« !… »</b> ?</p>
+</section>
+
+<!-- ============ 4. ANALYSE ============ -->
+<section class="chapter">
+  <h2><span class="num">4</span>Analyse littéraire et explications de texte</h2>
+
+  <div class="box grey">
+    <div class="box-title">Méthode : l'explication linéaire « à la française »</div>
+    <ol style="margin-bottom:0">
+      <li><b>Introduction</b> : présenter l'auteur et l'œuvre, situer l'extrait, lire le texte, poser une <b>problématique</b> (une question qui guide l'analyse), annoncer les <b>mouvements</b> du texte.</li>
+      <li><b>Développement</b> : suivre le texte dans l'ordre. Pour chaque mouvement : citer, nommer le procédé, interpréter l'effet (<i>citation → procédé → interprétation</i>).</li>
+      <li><b>Conclusion</b> : répondre à la problématique, puis proposer une <b>ouverture</b> (lien avec une autre œuvre ou une autre question).</li>
+    </ol>
+  </div>
+
+  <h3>Explication 1 — L'incipit (§ 1 à 6)</h3>
+
+  <h4>Introduction</h4>
+  <p>« La Parure » est un conte publié par Maupassant dans <i>Le Gaulois</i> en 1884, puis repris dans <i>Contes du jour et de la nuit</i> (1885). L'auteur, disciple de Flaubert, y peint le monde des petits employés, qu'il connaît bien. L'incipit présente l'héroïne, Mathilde Loisel, avant même de la nommer : c'est un <b>portrait</b> plutôt qu'un début d'action. La première partie du conte, en six paragraphes, ne contient presque aucun événement : elle installe un état, une souffrance, un rêve.</p>
+  <p><b>Problématique :</b> <i>Comment Maupassant, dans ce portrait, construit-il une héroïne déchirée entre rêve et réalité, dont l'insatisfaction annonce déjà le drame ?</i></p>
+  <p><b>Mouvements :</b> 1) § 1–2 : une condition sociale vécue comme une injustice ; 2) § 3–4 : la fuite dans le rêve ; 3) § 5–6 : le manque et la souffrance.</p>
+
+  <h4>Premier mouvement (§ 1–2) : une « erreur du destin »</h4>
+  <ul>
+    <li><b>Une héroïne anonyme et typique.</b> <i>« C'était une de ces jolies et charmantes filles »</i> : le déterminant démonstratif <i>ces</i> et le pronom <i>une</i> présentent Mathilde comme un <b>type social</b>, un exemple parmi d'autres, et non comme un individu unique. Elle n'est pas nommée ; son prénom n'apparaîtra qu'au § 23, et le nom « Loisel » est celui de son mari. Le réalisme cherche le général à travers le particulier.</li>
+    <li><b>Le point de vue de l'héroïne.</b> <i>« nées, comme par une erreur du destin, dans une famille d'employés »</i> : l'incise, mise entre virgules, adopte déjà le regard de Mathilde. C'est elle qui se croit victime d'une erreur. Le narrateur ne dit pas que le destin s'est trompé, mais <i>« comme par »</i> : la comparaison garde une distance ironique.</li>
+    <li><b>Une gradation de l'impossible.</b> <i>« aucun moyen d'être connue, comprise, aimée, épousée »</i> : quatre participes passés en gradation, avec allitération en [k] et assonance en [e]. Ils résument le parcours rêvé d'une jeune fille, de la rencontre au mariage. Tous sont <b>passifs</b> : Mathilde attend tout des autres.</li>
+    <li><b>Un mariage subi.</b> <i>« elle se laissa marier »</i> : la tournure pronominale passive souligne l'absence de volonté. L'adjectif <i>« petit commis »</i> est péjoratif : on voit le mari à travers le mépris de sa femme.</li>
+    <li><b>Une généralisation du narrateur.</b> Au § 2, le passage au <b>présent de vérité générale</b> (<i>« les femmes n'ont point de caste ni de race »</i>) fait entendre la voix du narrateur-moraliste. L'idée est ambiguë : elle donne aux femmes une noblesse naturelle (beauté, grâce, charme), mais l'enferme dans l'apparence. La phrase <i>« Elle fut simple ne pouvant être parée »</i> annonce le titre : le verbe <i>parer</i> donne <i>parure</i>.</li>
+  </ul>
+
+  <h4>Deuxième mouvement (§ 3–4) : la fuite dans le rêve</h4>
+  <ul>
+    <li><b>L'anaphore de la souffrance.</b> <i>« Elle souffrait […]. Elle souffrait de la pauvreté de son logement, de la misère des murs, de l'usure des sièges, de la laideur des étoffes »</i> : la répétition du verbe et l'énumération de quatre compléments construits sur le même modèle (<i>de la + nom abstrait + des + nom concret</i>) donnent un rythme obsessionnel. Les objets du quotidien deviennent des blessures.</li>
+    <li><b>Une souffrance relative.</b> <i>« dont une autre femme de sa caste ne se serait même pas aperçue »</i> : le narrateur relativise. La souffrance de Mathilde vient de son imagination plus que de sa situation réelle. Elle a d'ailleurs une bonne : elle n'est pas misérable (elle le deviendra plus tard).</li>
+    <li><b>L'anaphore du rêve.</b> <i>« Elle songeait aux… »</i> revient quatre fois. Le rêve s'organise en <b>longues phrases</b>, riches en adjectifs (<i>muettes, capitonnées, orientales, hautes, larges, lourde</i>) et en pluriels : c'est un monde d'abondance. Le présent <i>« qui dorment »</i> rend le rêve presque réel.</li>
+    <li><b>Le contraste comique.</b> Au § 4, la phrase met face à face deux mondes : la <i>« nappe de trois jours »</i>, la <i>« soupière »</i> et le cri naïf du mari (<i>« Ah ! le bon pot-au-feu ! »</i>), et, en réponse, les <i>« dîners fins », « argenteries reluisantes », « truite », « gélinotte »</i>. Le discours direct du mari, simple et heureux, s'oppose au rêve muet de l'épouse. Le décor rêvé est une <b>« forêt de féerie »</b> : un monde de conte, irréel. Le <i>« sourire de sphinx »</i> évoque le mystère et la séduction : Mathilde rêve moins de richesse que d'être regardée.</li>
+  </ul>
+
+  <h4>Troisième mouvement (§ 5–6) : le manque</h4>
+  <ul>
+    <li><b>Des phrases courtes et sèches.</b> <i>« Elle n'avait pas de toilettes, pas de bijoux, rien. »</i> Après les longues phrases du rêve, le retour à la réalité est brutal. La gradation descendante se termine sur le mot <i>« rien »</i>. Les bijoux sont déjà mentionnés : le lecteur attentif devine le thème du conte.</li>
+    <li><b>Une identité fondée sur l'apparence.</b> <i>« Et elle n'aimait que cela ; elle se sentait faite pour cela »</i> : le pronom vague <i>cela</i> réduit l'existence de Mathilde aux objets. Le subjonctif plus-que-parfait <i>« Elle eût tant désiré plaire, être enviée »</i> exprime un regret irréel : ces désirs ne se réaliseront pas. Ou plutôt, ils se réaliseront une seule nuit.</li>
+    <li><b>L'amie riche.</b> Mme Forestier apparaît sans être nommée : <i>« une camarade de couvent qu'elle ne voulait plus aller voir »</i>. Elle sera l'instrument du drame. L'accumulation finale <i>« de chagrin, de regret, de désespoir et de détresse »</i> est presque <b>excessive</b> : le narrateur exagère pour faire sentir, avec une légère ironie, le caractère disproportionné de cette douleur.</li>
+  </ul>
+
+  <h4>Conclusion</h4>
+  <p>L'incipit construit un portrait fondé sur l'<b>opposition entre le rêve et la réalité</b>. Le narrateur adopte souvent le point de vue de Mathilde (focalisation interne), mais il garde une distance ironique (<i>comme par une erreur du destin</i>, <i>une autre femme de sa caste</i>). Le lecteur comprend que le malheur de l'héroïne vient de son désir de paraître : tout le drame est déjà en germe. <b>Ouverture :</b> ce personnage rappelle Emma Bovary, l'héroïne de Flaubert (1857), qui, elle aussi, se détruit pour avoir confondu la vie et les rêves nés de ses lectures. On appelle <b>bovarysme</b> cette tendance à s'imaginer autre que l'on est.</p>
+
+  <h3 class="chapter" style="margin-top:0">Explication 2 — Le dénouement (§ 107 à 129)</h3>
+  <p class="small">Travail en groupes : préparez cette explication à l'aide des pistes ci-dessous, puis comparez avec le corrigé en annexe.</p>
+
+  <h4>Introduction</h4>
+  <p>Dix ans ont passé. Les Loisel ont remboursé leur dette au prix d'une vie de misère. Un dimanche, aux Champs-Élysées, Mathilde rencontre par hasard Mme Forestier. Cette scène de <b>reconnaissance</b>, construite presque entièrement en dialogue, mène à la <b>chute</b> la plus célèbre de Maupassant.</p>
+  <p><b>Problématique :</b> <i>Comment cette scène finale renverse-t-elle le sens de tout le récit et transforme-t-elle le sacrifice de Mathilde en tragédie ironique ?</i></p>
+  <p><b>Mouvements :</b> 1) § 107–108 : la rencontre, un contraste cruel ; 2) § 109–127 : un dialogue de reconnaissance et un aveu fier ; 3) § 128–129 : la révélation.</p>
+
+  <h4>Pistes d'analyse</h4>
+  <table>
+    <tr><th style="width:22%">Mouvement</th><th style="width:36%">Citations à observer</th><th>Questions à se poser</th></tr>
+    <tr><td><b>1. La rencontre</b></td><td><i>« toujours jeune, toujours belle, toujours séduisante »</i> ; <i>« Allait-elle lui parler ? Oui, certes. […] Pourquoi pas ? »</i></td><td>Quel est l'effet de l'anaphore ternaire ? Que signifie « toujours » par rapport aux dix ans écoulés ? Quel type de discours dans le § 108 ?</td></tr>
+    <tr><td><b>2. La reconnaissance</b></td><td><i>« cette bourgeoise »</i> ; <i>« Mais… madame !… »</i> / <i>« Bonjour, Jeanne »</i> ; <i>« ma pauvre Mathilde, comme tu es changée ! »</i> ; <i>« je suis rudement contente »</i> ; <i>« une joie orgueilleuse et naïve »</i></td><td>Comment passe-t-on du vouvoiement au tutoiement ? Que montre le mot « bourgeoise » (ironie : Mathilde est devenue une femme du peuple) ? Pourquoi Mathilde est-elle fière ? Comment évolue son langage ?</td></tr>
+    <tr><td><b>3. La révélation</b></td><td><i>« Mme Forestier s'était arrêtée »</i> ; <i>« Mais la mienne était fausse. Elle valait au plus cinq cents francs !… »</i></td><td>Quel est le rôle du plus-que-parfait ? Du connecteur « Mais » ? Comparez 500 francs et 36 000 francs. Pourquoi le texte s'arrête-t-il sur une réplique, sans commentaire du narrateur ?</td></tr>
+  </table>
+
+  <h3>Axes de lecture transversaux</h3>
+
+  <h4>1. Une structure au service de la chute</h4>
+  <p>Le conte compte <b>sept parties</b> (séparées par ⁂) qui suivent un schéma presque symétrique : misère rêvée → bonheur d'une nuit → misère réelle. Le <b>rythme</b> est très variable : la soirée du bal, sommet du bonheur, tient en deux paragraphes (§ 53–54) ; la nuit de la perte est racontée heure par heure (§ 62–85) ; dix ans de misère tiennent en une phrase : <i>« Et cette vie dura dix ans. »</i> (§ 103). Cette <b>ellipse</b> et ce <b>sommaire</b> accélèrent le récit vers la scène finale, racontée au contraire en <b>scène</b> (temps du récit ≈ temps de l'histoire, grâce au dialogue).</p>
+  <div class="timeline avoid">
+    <div><b>I</b>Le rêve<br>§ 1–6</div>
+    <div><b>II–III</b>L'espoir<br>§ 7–52</div>
+    <div><b>IV</b>Le triomphe et la perte<br>§ 53–85</div>
+    <div><b>V</b>La dette<br>§ 86–98</div>
+    <div><b>VI</b>Dix ans de misère<br>§ 99–106</div>
+    <div><b>VII</b>La vérité<br>§ 107–129</div>
+  </div>
+
+  <h4>2. Le narrateur et le point de vue</h4>
+  <p>Le narrateur est <b>extérieur</b> à l'histoire (récit à la 3<sup>e</sup> personne). Il est souvent <b>omniscient</b> : il connaît les pensées des deux époux (Loisel <i>« songeait, lui, qu'il lui faudrait être au Ministère à dix heures »</i>, § 61). Mais il adopte surtout la <b>focalisation interne</b> sur Mathilde, à travers le discours indirect libre (§ 98, 99, 106, 108). Il intervient parfois en moraliste (§ 2, § 54 : <i>« cette victoire si complète et si douce au cœur des femmes »</i>, § 106 : <i>« Comme il faut peu de chose pour vous perdre ou vous sauver ! »</i>). Ces généralisations, typiques de Maupassant, ont souvent une valeur ironique.</p>
+
+  <h4>3. L'ironie du sort et le tragique</h4>
+  <p>Le conte repose sur l'<b>ironie dramatique</b> : à la fin, le lecteur comprend que tout le sacrifice était inutile. Les indices étaient pourtant présents : Mme Forestier prête le bijou sans hésiter (<i>« Mais oui, certainement »</i>, § 51) ; le joaillier n'a vendu que l'écrin (§ 90) ; Mme Forestier n'ouvre pas la boîte (§ 98). Le <b>mensonge</b> et l'<b>orgueil</b> des Loisel, qui ont préféré tout sacrifier plutôt qu'avouer la perte, sont la vraie cause du malheur. Comme dans la tragédie, le personnage provoque lui-même sa chute ; mais ici, la fatalité n'a rien de grandiose : c'est un hasard, un fermoir, un faux bijou.</p>
+
+  <h4>4. Le personnage de Mathilde : une évolution ambiguë</h4>
+  <p>Au début, Mathilde est passive, capricieuse et vaniteuse. Dans la misère, elle devient active, courageuse, <i>« héroïquement »</i> (§ 99). Elle gagne en dignité ce qu'elle perd en beauté : <i>« la femme forte, et dure, et rude, des ménages pauvres »</i> (§ 105 ; la polysyndète <i>et… et</i> insiste sur cette transformation). Pourtant, elle reste fidèle à son rêve : elle songe <i>« à cette soirée d'autrefois »</i>. Et sa fierté finale (<i>« une joie orgueilleuse et naïve »</i>) montre qu'elle accorde encore une importance immense aux apparences : elle est fière d'avoir trompé son amie. Le lecteur hésite entre pitié et critique.</p>
+
+  <h4>5. Les autres personnages</h4>
+  <ul>
+    <li><b>M. Loisel</b> : personnage effacé mais touchant. Il sacrifie son fusil de chasse (§ 27), dort pendant le bal, cherche toute la nuit, risque sa signature, travaille la nuit. Il ne fait aucun reproche. Son nom, <i>Loisel</i>, rappelle peut-être <i>l'oiseau</i> (et les alouettes qu'il voulait chasser) : un homme simple, sans ailes pour rêver.</li>
+    <li><b>Mme Forestier</b> : figure de la richesse tranquille, qui n'a pas besoin de paraître (elle possède un faux bijou sans s'en cacher). Elle reste <i>« toujours jeune, toujours belle »</i> : l'argent protège du temps. Son prénom, <i>Jeanne</i>, n'apparaît qu'à la fin, comme pour marquer l'intimité retrouvée… et perdue.</li>
+  </ul>
+
+  <h4>6. Les objets symboliques</h4>
+  <ul>
+    <li><b>La parure</b> : le titre joue sur <i>parure / paraître / apparence</i>. Le bijou est faux, comme le bonheur d'une nuit est illusoire. La valeur d'un objet dépend du regard des autres, non de sa vérité.</li>
+    <li><b>Le miroir</b> : Mathilde se regarde dans la <i>« glace »</i> chez son amie (§ 45, § 48 : <i>« en extase devant elle-même »</i>) et chez elle, après le bal (§ 62 : <i>« afin de se voir encore une fois dans sa gloire »</i>). C'est devant le miroir qu'elle découvre la perte : le narcissisme est puni.</li>
+    <li><b>Les vêtements</b> : la robe de bal s'oppose aux <i>« modestes vêtements de la vie ordinaire »</i> (§ 56) puis aux <i>« jupes de travers »</i> (§ 105). Le vêtement indique la classe sociale.</li>
+    <li><b>Le fiacre « honteux de sa misère »</b> (§ 60) : la voiture est personnifiée. Comme Mathilde, elle ne sort que la nuit pour cacher sa pauvreté : c'est un double de l'héroïne.</li>
+  </ul>
+
+  <h4>7. Le réalisme et la critique sociale</h4>
+  <p>Le conte est ancré dans le réel : lieux de Paris (<i>rue des Martyrs, Palais-Royal, Champs-Élysées, la Seine</i>), institutions (<i>ministère, Préfecture de police</i>), sommes d'argent précises. Maupassant critique une société où l'<b>apparence</b> détermine la valeur des personnes, où l'administration organise des fêtes que ses employés ne peuvent pas se payer, et où le crédit ruine les pauvres.</p>
+  <table>
+    <tr><th>Somme</th><th>§</th><th>Ce qu'elle représente</th></tr>
+    <tr><td>10 francs</td><td>35</td><td>Des roses naturelles : le « luxe » du pauvre</td></tr>
+    <tr><td>400 francs</td><td>26–28</td><td>La robe de bal = le fusil de chasse rêvé par Loisel</td></tr>
+    <tr><td>500 francs (au plus)</td><td>129</td><td>La vraie valeur du bijou perdu</td></tr>
+    <tr><td>18 000 francs</td><td>94</td><td>L'héritage du père de Loisel : toute sa sécurité</td></tr>
+    <tr><td>36 000 francs</td><td>92, 95</td><td>Prix de la nouvelle rivière (40 000 sans réduction ; 34 000 si on la rend avant février)</td></tr>
+    <tr><td>5 sous la page</td><td>102</td><td>Le salaire de Loisel pour ses copies de nuit</td></tr>
+  </table>
+  <p class="small">Calcul : 36 000 ÷ 500 = 72. La rivière achetée vaut au moins 72 fois le bijou perdu, et les intérêts des usuriers ont encore augmenté la dette.</p>
+
+  <h4>8. La vision du monde de Maupassant</h4>
+  <p>Maupassant, lecteur du philosophe pessimiste Schopenhauer, montre un monde où le hasard (<i>« Comme il faut peu de chose pour vous perdre ou vous sauver ! »</i>) gouverne des vies humaines. Le conte ne donne pas de morale explicite, contrairement à la fable : c'est au lecteur de juger. On peut y lire une critique de la vanité, mais aussi de l'orgueil social qui empêche d'avouer la vérité, ou encore une pitié pour ceux que la société condamne à rêver de ce qu'ils n'auront jamais.</p>
+
+  <div class="box gold">
+    <div class="box-title">Sujets de commentaire ou de dissertation <span class="tag c1">C1</span></div>
+    <ol style="margin-bottom:0">
+      <li><b>Commentaire</b> : commentez les § 99 à 106 (« Mme Loisel connut la vie horrible des nécessiteux… ») en étudiant la transformation de l'héroïne et le traitement du temps.</li>
+      <li><b>Dissertation</b> : « Une nouvelle réussie est une nouvelle dont la fin oblige à relire le début. » Discutez cette affirmation en vous appuyant sur « La Parure » et sur d'autres récits que vous connaissez.</li>
+      <li><b>Question de réflexion</b> : Mathilde est-elle une victime ou une coupable ?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 5. PRODUCTION ÉCRITE ============ -->
+<section class="chapter">
+  <h2><span class="num">5</span>Production écrite</h2>
+  <p>Choisissez <b>un</b> des trois sujets.</p>
+
+  <div class="box">
+    <div class="box-title">Sujet 1 — Écrire la suite (récit) <span class="tag">B2</span></div>
+    <p>Imaginez la suite de la scène finale. Comment Mathilde réagit-elle ? Que propose Mme Forestier ? Que dit-on à M. Loisel le soir même ? Votre texte devra respecter le style du conte : récit au passé (passé simple / imparfait), dialogue avec ponctuation correcte, au moins un passage au discours indirect libre.</p>
+    <p class="small"><b>Longueur :</b> 300 à 400 mots.</p>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Sujet 2 — Changer de point de vue (récit) <span class="tag">B2</span><span class="tag c1">C1</span></div>
+    <p>Réécrivez l'histoire du point de vue de <b>Mme Forestier</b>, sous la forme d'une page de son journal intime, écrite le soir de la rencontre aux Champs-Élysées. Elle se souvient du prêt, du retour du bijou, de sa réaction ; elle raconte la rencontre et ce qu'elle éprouve. Employez la 1<sup>re</sup> personne, les temps du passé (passé composé, imparfait, plus-que-parfait) et le vocabulaire des sentiments.</p>
+    <p class="small"><b>Longueur :</b> 300 à 400 mots.</p>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Sujet 3 — Essai argumentatif <span class="tag c1">C1</span></div>
+    <p>« Les apparences gouvernent le monde », disait-on déjà au XIX<sup>e</sup> siècle. À l'heure des réseaux sociaux, sommes-nous encore, comme Mathilde Loisel, prisonniers du désir de paraître ? Vous rédigerez un essai structuré (introduction avec problématique, deux ou trois parties argumentées avec exemples, conclusion), en vous appuyant sur le conte et sur des exemples actuels.</p>
+    <p class="small"><b>Longueur :</b> 450 à 600 mots. Utilisez au moins six connecteurs logiques différents (<i>certes, cependant, en effet, par conséquent, d'ailleurs, ainsi, en outre, néanmoins…</i>).</p>
+  </div>
+
+  <h3>Boîte à outils</h3>
+  <div class="grid2">
+    <div class="box grey">
+      <div class="box-title">Pour raconter</div>
+      <p>Soudain · tout à coup · alors · aussitôt · à peine… que · au bout de · peu à peu · longtemps après · le lendemain · cette nuit-là</p>
+      <p>Verbes de parole : murmurer, balbutier, s'écrier, avouer, répliquer, protester, souffler, rétorquer</p>
+    </div>
+    <div class="box grey">
+      <div class="box-title">Pour argumenter</div>
+      <p>Il est indéniable que… · Force est de constater que… · Certes…, mais… · Il convient de nuancer… · Loin de… · Non seulement…, mais encore… · En définitive…</p>
+      <p>Exprimer son opinion : À mon sens · Il me semble que + indicatif · Je doute que + subjonctif</p>
+    </div>
+  </div>
+
+  <h3>Grille d'évaluation (sur 25 points, inspirée du DELF B2 / DALF C1)</h3>
+  <table>
+    <tr><th style="width:40%">Critère</th><th style="width:10%">Points</th><th>Ce qui est attendu</th></tr>
+    <tr><td>Respect de la consigne</td><td>/ 2</td><td>Type de texte, point de vue, longueur.</td></tr>
+    <tr><td>Correction sociolinguistique</td><td>/ 2</td><td>Registre adapté (littéraire, intime ou argumentatif).</td></tr>
+    <tr><td>Capacité à raconter / argumenter</td><td>/ 5</td><td>Récit vivant et cohérent avec le conte ; ou thèse claire, arguments illustrés.</td></tr>
+    <tr><td>Cohérence et cohésion</td><td>/ 4</td><td>Organisation, paragraphes, connecteurs, progression.</td></tr>
+    <tr><td>Étendue et maîtrise du vocabulaire</td><td>/ 4</td><td>Réemploi du lexique étudié, précision, variété.</td></tr>
+    <tr><td>Morphosyntaxe</td><td>/ 6</td><td>Temps du passé, concordance, subjonctif, hypothèse, accords.</td></tr>
+    <tr><td>Orthographe et ponctuation</td><td>/ 2</td><td>Ponctuation du dialogue, accents, accords du participe.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 6. PRODUCTION ORALE ============ -->
+<section class="chapter">
+  <h2><span class="num">6</span>Production orale</h2>
+
+  <h3>Activité 1 — Lecture expressive (individuel, 5 min de préparation)</h3>
+  <p>Lisez à voix haute le dialogue final (§ 110 à 129) à deux. Travaillez l'intonation des points de suspension, des exclamations et des questions. Comment dire <i>« rudement contente »</i> ? Comment prononcer la dernière réplique : avec pitié, avec gêne, avec horreur ? Essayez plusieurs versions.</p>
+
+  <h3>Activité 2 — Jeu de rôle (par deux ou trois, 10 min de préparation)</h3>
+  <div class="box">
+    <p><b>Situation A — La nuit de la perte.</b> M. et Mme Loisel, rentrés à 4 heures du matin, découvrent la perte. L'un veut avouer la vérité à Mme Forestier, l'autre refuse. Convainquez votre partenaire.</p>
+    <p><b>Situation B — Chez le joaillier du Palais-Royal.</b> Les Loisel négocient le prix de la rivière (40 000 francs). Le joaillier est habile. Employez le conditionnel de politesse et les expressions de la négociation.</p>
+    <p style="margin-bottom:0"><b>Situation C — Le soir de la révélation.</b> Mathilde rentre et doit annoncer la vérité à son mari. Jouez la scène.</p>
+  </div>
+
+  <h3>Activité 3 — Débat (classe entière, 30 min)</h3>
+  <p><b>Question : « Mathilde Loisel est-elle responsable de son malheur ? »</b></p>
+  <p>Formez trois groupes : <b>l'accusation</b> (Mathilde est vaniteuse et menteuse), <b>la défense</b> (elle est victime de la société et du hasard), <b>le jury</b> (il pose des questions et rend un verdict argumenté). Chaque groupe prépare trois arguments avec des citations du texte.</p>
+  <div class="box grey">
+    <div class="box-title">Expressions utiles pour débattre</div>
+    <p style="margin-bottom:0"><b>Prendre la parole :</b> Si je peux me permettre… · J'aimerais ajouter que… <b>Être d'accord :</b> Je partage votre avis · Vous avez tout à fait raison sur ce point. <b>Contester :</b> Je ne suis pas de cet avis · Permettez-moi de nuancer · Cet argument ne tient pas, car… <b>Conclure :</b> Tout bien considéré… · En somme…</p>
+  </div>
+
+  <h3>Activité 4 — Monologue suivi (type DELF B2 / DALF C1)</h3>
+  <p>Après 30 minutes de préparation, présentez un exposé de 5 à 7 minutes sur un des sujets suivants, puis répondez aux questions de l'examinateur.</p>
+  <ol>
+    <li>« Il faut peu de chose pour vous perdre ou vous sauver. » Le hasard joue-t-il un rôle décisif dans nos vies ?</li>
+    <li>Le crédit à la consommation : une aide ou un piège ?</li>
+    <li>Influenceurs, marques, filtres : le désir de paraître est-il plus fort aujourd'hui qu'au temps de Maupassant ?</li>
+    <li>Faut-il toujours dire la vérité, même quand elle nous fait honte ?</li>
+  </ol>
+
+  <h3>Activité 5 — Questions de discussion (petits groupes)</h3>
+  <ul>
+    <li>Avez-vous de la sympathie pour Mathilde ? pour son mari ? Pourquoi ?</li>
+    <li>Le sacrifice des Loisel a-t-il quand même eu un sens ? Mathilde est-elle meilleure à la fin ?</li>
+    <li>Quel objet, aujourd'hui, jouerait le rôle de la rivière de diamants (sac, téléphone, voiture…) ?</li>
+    <li>Pourquoi, selon vous, cette nouvelle de 1884 est-elle toujours étudiée dans le monde entier ?</li>
+  </ul>
+
+  <h3>Grille d'évaluation de l'oral (sur 25 points)</h3>
+  <table>
+    <tr><th style="width:44%">Critère</th><th style="width:10%">Points</th><th>Ce qui est attendu</th></tr>
+    <tr><td>Présentation du sujet et organisation</td><td>/ 6</td><td>Problématique, plan annoncé, transitions.</td></tr>
+    <tr><td>Argumentation et exemples</td><td>/ 6</td><td>Arguments pertinents, exemples précis, références au texte.</td></tr>
+    <tr><td>Interaction</td><td>/ 4</td><td>Répondre, reformuler, défendre ou nuancer sa position.</td></tr>
+    <tr><td>Lexique et grammaire</td><td>/ 6</td><td>Richesse, précision, correction.</td></tr>
+    <tr><td>Phonétique et fluidité</td><td>/ 3</td><td>Prononciation, intonation, débit.</td></tr>
+  </table>
+</section>
+
+<!-- ============ CORRIGÉS ============ -->
+<section class="chapter corr">
+  <h2>Corrigés et éléments de réponse</h2>
+
+  <h3>1. Compréhension</h3>
+  <h4>A. Compréhension globale</h4>
+  <ol>
+    <li>Mathilde Loisel, jeune femme belle et pauvre qui rêve de luxe ; M. Loisel, son mari, petit employé de ministère, simple et dévoué ; Mme Jeanne Forestier, amie riche de Mathilde, qui lui prête le bijou.</li>
+    <li>À Paris : l'hôtel du ministère de l'Instruction publique, la Seine et ses quais, la rue des Martyrs, la Préfecture de police, le Palais-Royal, les Champs-Élysées (et la plaine de Nanterre, en banlieue).</li>
+    <li>Un peu plus de dix ans : de l'invitation (un 18 janvier) à la rencontre finale. <i>« Et cette vie dura dix ans »</i> (§ 103), <i>« Au bout de dix ans »</i> (§ 104).</li>
+    <li>Propositions : I. Une femme malheureuse · II. L'invitation et la robe · III. Le bijou emprunté · IV. Le bal et la perte · V. Le remplacement · VI. Dix ans de misère · VII. La révélation.</li>
+    <li>Exemple : Mathilde, jeune femme pauvre, rêve de luxe. Invitée à un bal, elle emprunte une rivière de diamants à une amie riche et connaît un grand succès. Mais elle perd le bijou. Pour le remplacer, le couple s'endette et vit dix ans dans la misère. Mathilde apprend enfin que le bijou était faux.</li>
+  </ol>
+
+  <h4>B. Compréhension détaillée (éléments de réponse)</h4>
+  <ol start="6">
+    <li>Elle n'a pas de dot ni d'héritage à attendre, et aucun moyen de rencontrer un homme riche (milieu social modeste).</li>
+    <li>La beauté, la grâce et le charme ; la finesse, l'élégance, l'esprit. Réponse personnelle : on peut discuter le caractère daté et réducteur de cette idée.</li>
+    <li>Souffrances : logement pauvre, murs, sièges usés, étoffes laides, la vue de sa bonne. Rêves : antichambres, valets, salons de soie, bibelots, causeries, dîners fins, argenterie, tapisseries, plats exquis, galanteries.</li>
+    <li>Le mari est simple et facilement satisfait ; il n'a pas les mêmes désirs que sa femme. Le contraste montre l'incompréhension du couple et rend le rêve de Mathilde un peu ridicule.</li>
+    <li>Parce qu'elle souffre trop de comparer sa vie à celle de son amie (jalousie, humiliation).</li>
+    <li>Il attend qu'elle soit ravie ; elle jette l'invitation avec dépit, puis pleure, car elle n'a rien à se mettre.</li>
+    <li>Il renonce à l'argent qu'il gardait pour acheter un fusil et chasser l'été suivant. Il ne le dit pas : seul le narrateur nous l'apprend.</li>
+    <li>Elle n'a pas de bijou ; elle a peur d'avoir « l'air pauvre » parmi les femmes riches. Le mari propose des fleurs naturelles ; elle refuse car c'est humiliant.</li>
+    <li>Mathilde hésite, essaie, ne veut rien rendre. Devant la rivière : <i>« son cœur se mit à battre d'un désir immodéré », « ses mains tremblaient », « en extase devant elle-même »</i>.</li>
+    <li>Non : <i>« Mais oui, certainement »</i>. Elle prête facilement un objet sans grande valeur, ce qui annonce la fin.</li>
+    <li><i>« un succès », « plus jolie que toutes », « Tous les hommes la regardaient », « Le ministre la remarqua »</i>. Le mari dort dans un petit salon depuis minuit.</li>
+    <li>Elle a honte des vêtements modestes que son mari lui met sur les épaules, face aux femmes en fourrures.</li>
+    <li>Chez elle, devant le miroir, quand elle veut se voir une dernière fois « dans sa gloire » : au moment même où elle admire sa beauté, elle perd tout.</li>
+    <li>Il refait le trajet à pied, va à la Préfecture de police, aux journaux (récompense), aux compagnies de voitures, « partout ».</li>
+    <li>Ils écrivent que la fermeture est cassée et en réparation, pour gagner du temps et ne pas avouer la perte.</li>
+    <li>Il a l'air beaucoup plus vieux à cause de l'angoisse : hyperbole.</li>
+    <li>36 000 francs. Il utilise 18 000 francs hérités de son père et emprunte le reste à des amis, à des usuriers, en signant des billets.</li>
+    <li>Elle est froissée du retard. Mathilde craint qu'elle ouvre l'écrin, remarque la substitution et la prenne pour une voleuse.</li>
+    <li>Renvoi de la bonne, déménagement dans une mansarde, travaux ménagers, marchandage, travail de nuit du mari, renouvellement des billets.</li>
+    <li>Physiquement : vieillie, mal peignée, mains rouges, jupes de travers. Moralement : forte, dure, rude ; elle parle haut ; mais elle rêve encore au bal.</li>
+    <li>Les deux lectures sont possibles : sérieux (elle affronte la misère avec courage) et ironique (cet héroïsme est le résultat de la vanité et d'un mensonge ; il sert une cause inutile).</li>
+    <li>Mme Forestier : <i>« toujours jeune, toujours belle, toujours séduisante »</i>, elle promène un enfant. Mathilde : vieillie, usée, vêtue simplement.</li>
+    <li>Mathilde a trop changé. Elle l'appelle <i>« madame »</i> et la prend pour une « bourgeoise » qui se permet une familiarité.</li>
+    <li>Une fierté naïve : elle est contente d'avoir payé et d'avoir réussi à tromper son amie (<i>« une joie orgueilleuse et naïve »</i>).</li>
+    <li>Le bijou était faux et valait 500 francs au plus : dix ans de sacrifices pour rien. La fin, brève et inattendue, renverse le sens du récit : c'est une chute.</li>
+    <li>Le silence laisse au lecteur le soin d'imaginer la douleur de Mathilde ; il rend la chute plus forte, évite le pathétique, et invite à réfléchir plutôt qu'à pleurer.</li>
+  </ol>
+
+  <h4>C. Vrai ou faux</h4>
+  <p>1. F (§ 1 : « dans une famille d'employés ») · 2. V (§ 3 : « la petite Bretonne qui faisait son humble ménage ») · 3. F (§ 13 : « J'ai eu une peine infinie à l'obtenir ») · 4. F (§ 45 : elle essaie d'abord bracelets, perles, croix vénitienne) · 5. F (§ 55 : il dormait depuis minuit) · 6. F (§ 74–76) · 7. F (§ 90 : « j'ai dû seulement fournir l'écrin ») · 8. F (§ 98 : « Elle n'ouvrit pas l'écrin ») · 9. V (§ 103–104) · 10. F (§ 107 : « toujours jeune, toujours belle »).</p>
+
+  <h4>D. Schéma narratif</h4>
+  <p><b>Situation initiale</b> (§ 1–6) : Mathilde, mariée à un petit employé, souffre de sa pauvreté. · <b>Élément perturbateur</b> (§ 7–10) : l'invitation au bal du ministère. · <b>Péripéties</b> (§ 11–98) : la robe, l'emprunt du bijou, le succès au bal, la perte, les recherches, le remplacement à crédit. · <b>Élément de résolution</b> (§ 99–106) : dix ans de travail pour rembourser la dette. · <b>Situation finale</b> (§ 107–129) : la rencontre avec Mme Forestier et la révélation : la rivière était fausse.</p>
+
+  <h3>2. Vocabulaire</h3>
+  <p><b>Ex. 1.</b> <i>Luxe :</i> tentures orientales, argenteries reluisantes, fourrures, bibelots inestimables, soie ancienne, torchères de bronze, truite, rivière de diamants. <i>Pauvreté :</i> nappe de trois jours, mansarde, pot-au-feu, poteries grasses, ordures, mains rouges, vêtements modestes, usure des sièges. Le luxe domine dans le rêve (début) et pendant le bal ; la pauvreté domine dans la réalité, et surtout dans la partie VI.</p>
+  <p><b>Ex. 2.</b> 1-f · 2-h · 3-e · 4-g · 5-b · 6-d · 7-a · 8-c</p>
+  <p><b>Ex. 3.</b> 1. dot · 2. jurent · 3. usurier · 4. pris son parti · 5. écrin · 6. Grisé · 7. nous retourner · 8. parure</p>
+  <p><b>Ex. 4.</b> paré(e) · ruiner · un emprunt · humilier · l'envie / envieux, enviable · le désespoir · séduire</p>
+  <p><b>Ex. 5.</b> (Exemples) <i>mieux nippée</i> → mieux habillée → plus élégamment vêtue · <i>J'aurai l'air misère comme tout</i> → J'aurai l'air très pauvre → J'aurai une apparence fort misérable · <i>Tu es toute drôle</i> → Tu es bizarre / tu n'es pas comme d'habitude → Tu sembles préoccupée · <i>Que tu es bête !</i> → Tu n'es pas maligne ! → Comme vous manquez de discernement ! · <i>rudement contente</i> → très contente → extrêmement satisfaite. Les deux époux parlent familièrement, comme les petits bourgeois de l'époque. Le langage final de Mathilde (« rudement », « ça ») montre son déclassement social, alors que ses rêves étaient raffinés.</p>
+  <p><b>Ex. 6.</b> <i>sauter au cou</i> : embrasser avec élan · <i>attraper froid</i> : tomber malade à cause du froid · <i>avoir affaire à</i> : être en relation avec (souvent quelqu'un de redoutable) · <i>par-ci, par-là</i> : à différents endroits, un peu partout · <i>prendre son parti</i> : se résigner et décider d'agir · <i>sou à sou</i> : en économisant la moindre pièce · <i>à grande eau</i> : avec beaucoup d'eau · <i>il faut peu de chose pour</i> : un détail suffit pour.</p>
+
+  <h3>3. Grammaire</h3>
+  <p><b>Ex. 1.</b> § 53 : passé simple <i>arriva, eut, remarqua</i> (événements) ; imparfait <i>était, regardaient, demandaient, cherchaient, voulaient</i> (description, actions simultanées). § 54 : <i>dansait</i> (imparfait), puis seulement des participes et des groupes nominaux (<i>grisée, ne pensant plus, dans le triomphe…, dans la gloire…</i>). L'absence de verbes conjugués suspend le temps : la soirée devient un moment d'extase hors du temps, un « nuage de bonheur ».</p>
+  <p><b>Ex. 2.</b> écoutait · descendait · furent · trouvèrent · se mirent · voyaient · descendaient · trouvèrent · ramena · remontèrent · était · songeait · ôta · s'était enveloppé · poussa · avait.</p>
+  <p><b>Ex. 3.</b> Le passé simple présente les dix ans de travaux comme un <b>bloc achevé</b>, une série d'épreuves vues de l'extérieur, rapidement : l'effet est celui d'un sommaire. L'imparfait du § 105 (<i>lavait</i>) décrit, lui, l'état durable de Mathilde transformée : un tableau.</p>
+  <p><b>Ex. 4.</b> 1. Loisel a donné à sa femme les quatre cents francs qu'il avait économisés. 2. Mathilde perdit la rivière qu'elle avait empruntée. 3. Après avoir refait tout le chemin, Loisel rentra à sept heures sans rien avoir trouvé. 4. Quand les Loisel eurent remboursé (ou : avaient remboursé) la dette, Mathilde rencontra Mme Forestier.</p>
+  <p><b>Ex. 5.</b> 1. Elle demanda ce qu'il voulait qu'elle se mette (litt. : <i>mît</i>) sur le dos pour aller là. 2. Il reprit qu'elle mettrait des fleurs naturelles et que c'était très chic en cette saison-là. 3. Il lui dit d'aller trouver son amie Mme Forestier et de lui demander de lui prêter des bijoux. 4. Il lui demandait si elle était sûre qu'elle l'avait encore en quittant le bal. 5. Mme Forestier dit qu'elle aurait dû la lui rendre plus tôt, car elle pouvait en avoir besoin. 6. Mathilde expliqua qu'elle lui en avait rapporté une autre toute pareille et que cela faisait dix ans qu'ils la payaient.</p>
+  <p><b>Ex. 6.</b> Ce sont les pensées de Mathilde (focalisation interne) : questions sans verbe introducteur (<i>qu'aurait-elle pensé ?</i>), exclamations (<i>Comme la vie est singulière !</i>), oral intérieur (<i>Oui, certes. Pourquoi pas ?</i>). Discours direct : « Vais-je lui parler ? Oui, certes. Et maintenant que j'ai payé, je lui dirai tout. Pourquoi pas ? » se demanda-t-elle. Discours indirect : Elle se demanda si elle allait lui parler, se répondit que oui, et que, maintenant qu'elle avait payé, elle lui dirait tout.</p>
+  <p><b>Ex. 7.</b> Réponses libres. Exemple : Si Mathilde avait dit la vérité à son amie, elle aurait appris que le bijou était faux et n'aurait pas perdu dix ans de sa vie.</p>
+  <p><b>Ex. 8.</b> 1. Elle aurait tellement voulu plaire, être enviée… 2. … comme s'ils avaient eu honte de leur misère pendant la journée.</p>
+  <p><b>Ex. 9.</b> soit · s'aperçoive · remboursions · ait · ait dit (ou : dise).</p>
+  <p><b>E.</b> Exclamations : surprise et panique (§ 66–68), étonnement philosophique (§ 106), émotion des retrouvailles et de la révélation (§ 116–129). Les points de suspension marquent l'hésitation, l'émotion, les non-dits. Le « !… » final associe le choc (exclamation) et le silence (suspension) : ce qui suit n'est pas dit ; le lecteur doit imaginer.</p>
+
+  <h3>4. Explication du dénouement : éléments de réponse</h3>
+  <p><b>Mouvement 1.</b> L'anaphore ternaire <i>« toujours jeune, toujours belle, toujours séduisante »</i> oppose l'immobilité de la riche, que le temps n'a pas touchée, à la transformation de Mathilde. Le § 108 est au discours indirect libre : Mathilde, fière et libérée de sa dette, se sent enfin l'égale de son amie (<i>« Pourquoi pas ? »</i>).</p>
+  <p><b>Mouvement 2.</b> Le mot <i>« bourgeoise »</i> est vu par Mme Forestier, mais il est ironique : Mathilde est devenue une femme du peuple. Le passage du vouvoiement (<i>« madame », « vous »</i>) au tutoiement marque la reconnaissance. L'exclamation <i>« comme tu es changée ! »</i> est cruelle sans le vouloir. Mathilde accuse (<i>« à cause de toi »</i>) puis se vante : elle croit avoir gagné, elle a sauvé l'honneur. Sa langue est devenue populaire (<i>« ça », « rudement »</i>) : la déchéance sociale se lit dans le langage. L'oxymore <i>« joie orgueilleuse et naïve »</i> résume le personnage : fierté et aveuglement.</p>
+  <p><b>Mouvement 3.</b> Le plus-que-parfait <i>« s'était arrêtée »</i> fige la scène, comme un arrêt sur image. Le geste <i>« lui prit les deux mains »</i> montre la pitié. Le connecteur <i>« Mais »</i> introduit le renversement. Les deux phrases finales, courtes, donnent la vérité sans commentaire : 500 francs contre 36 000 et dix ans de vie. Le récit s'arrête sur une réplique : pas de morale, pas de réaction de Mathilde. Le silence du narrateur rend la chute plus violente et ouvre le texte à l'interprétation.</p>
+  <p><b>Conclusion possible.</b> La scène finale est une <b>anagnorisis</b> (reconnaissance tragique) inversée : Mathilde est reconnue physiquement, mais c'est surtout elle qui découvre la vérité. Le dénouement oblige à relire tout le conte : chaque indice (le prêt facile, l'écrin du joaillier, la boîte non ouverte) prend un sens nouveau. L'apparence a trompé tout le monde, sauf celle qui possédait le faux. Ouverture : la nouvelle de Henry James, <i>Paste</i> (1899), reprend et inverse cette intrigue (un bijou cru faux s'y révèle vrai).</p>
+</section>
+
+<!-- ============ POUR ALLER PLUS LOIN ============ -->
+<section class="chapter">
+  <h2>Pour aller plus loin</h2>
+
+  <h3>Autres contes de Maupassant à lire</h3>
+  <table>
+    <tr><th style="width:28%">Titre</th><th style="width:12%">Année</th><th>Lien avec « La Parure »</th></tr>
+    <tr><td><b>Les Bijoux</b></td><td>1883</td><td>L'histoire inverse : un employé découvre après la mort de sa femme que ses « faux » bijoux étaient vrais.</td></tr>
+    <tr><td><b>Boule de suif</b></td><td>1880</td><td>L'hypocrisie sociale et le mépris des « honnêtes gens » pour une femme du peuple.</td></tr>
+    <tr><td><b>Le Horla</b></td><td>1887</td><td>Un autre Maupassant : le fantastique et la folie, sous forme de journal intime.</td></tr>
+    <tr><td><b>La Ficelle</b></td><td>1883</td><td>Un détail minuscule détruit la vie d'un paysan normand.</td></tr>
+    <tr><td><b>Aux champs</b></td><td>1882</td><td>L'argent et le choix des parents : une chute amère.</td></tr>
+    <tr><td><b>Bel-Ami</b> (roman)</td><td>1885</td><td>L'ascension sociale par l'apparence et la séduction dans le Paris de la presse. Un couple Forestier y joue un rôle important.</td></tr>
+  </table>
+
+  <h3>Œuvres en écho</h3>
+  <ul>
+    <li><b>Gustave Flaubert</b>, <i>Madame Bovary</i> (1857) : le modèle de l'héroïne qui rêve d'une autre vie.</li>
+    <li><b>Henry James</b>, <i>Paste</i> (1899) : réécriture de « La Parure » en anglais, avec une chute inversée.</li>
+    <li><b>Émile Zola</b>, <i>Au Bonheur des Dames</i> (1883) : le désir de consommer, à la même époque.</li>
+    <li>À l'écran : « La Parure » a été adaptée plusieurs fois, notamment dans la série télévisée <i>Chez Maupassant</i> (France 2, 2007).</li>
+  </ul>
+
+  <h3>Ressources</h3>
+  <ul>
+    <li>Texte intégral : Wikisource, <i>Contes du jour et de la nuit</i> (éd. Flammarion, 1885), « La Parure » : fr.wikisource.org</li>
+    <li>Le site <i>maupassantiana.fr</i> : bibliographie et ressources sur l'œuvre de Maupassant.</li>
+    <li>Gallica (BnF) : numéros du journal <i>Le Gaulois</i> de 1884 et illustrations d'époque.</li>
+  </ul>
+
+  <div class="box gold" style="margin-top:8mm">
+    <div class="box-title">Le mot de la fin</div>
+    <p style="margin-bottom:0"><i>« Comme la vie est singulière, changeante ! Comme il faut peu de chose pour vous perdre ou vous sauver ! »</i> Toute l'œuvre de Maupassant tient peut-être dans cette phrase : des vies ordinaires, un détail, un hasard, et un narrateur qui regarde sans juger.</p>
+  </div>
+</section>
+
+</body>
+</html>
