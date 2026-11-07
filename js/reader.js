@@ -223,8 +223,7 @@
     if (!qs.length) html += `<p class="small">Aucune question de compréhension ne porte spécifiquement sur ce paragraphe.</p>`;
     qs.forEach((n) => {
       html += `<div class="box grey"><div class="box-title">Question ${n}</div><p>${App.qText ? App.qText(n) : ""}</p>
-        <button class="btn sm ghost" data-q="${n}">Répondre dans « Compréhension »</button>
-        ${document.documentElement.classList.contains("prof") && App.profQHtml ? `<div style="margin-top:10px">${App.profQHtml(n)}</div>` : ""}</div>`;
+        <button class="btn sm ghost" data-q="${n}">Répondre dans « Compréhension »</button></div>`;
     });
     const b = App.openPanel("Questions liées", html);
     App.$$("[data-q]", b).forEach((x) => x.onclick = () => { App.closePanel(); App.go("comprehension", "q" + x.dataset.q); });

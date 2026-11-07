@@ -50,19 +50,18 @@
     T.paras.forEach((p, k) => index.push({ where: "Le texte · § " + (k + 1), text: p, go: () => App.gotoPar(k + 1) }));
     window.LEXIQUE.forEach((x) => index.push({ where: "Lexique", text: x.mot + " — " + x.def, go: () => { const b = App.openPanel("Vocabulaire", App.lexHtml(x)); App.$$("[data-goto]", b).forEach((c) => c.onclick = () => App.gotoPar(+c.dataset.goto)); } }));
     Object.entries(window.ELEVE).forEach(([id, html]) => { if (lab[id]) splitSentences(strip(html)).forEach((s) => index.push({ where: lab[id], text: s, tab: id })); });
-    Object.entries(window.PROF).forEach(([id, html]) => { const t = id === "annexes" ? "cle" : id; splitSentences(strip(html)).forEach((s) => index.push({ where: (lab[t] || "Livret") + " · professeur", text: s, tab: t, prof: true })); });
+    Object.entries(window.EXPL).forEach(([id, html]) => { if (!lab[id] || id === "accueil") return; const d = document.createElement("div"); d.innerHTML = html; d.querySelectorAll(".tip").forEach((x) => x.remove()); splitSentences(d.textContent.replace(/\s+/g, " ")).forEach((s) => index.push({ where: lab[id] + " · explications", text: s, tab: id })); });
   }
   const splitSentences = (txt) => txt.split(/(?<=[.!?…])\s+/).filter((s) => s.length > 12);
 
   App.openSearch = (initial = "") => {
     if (!index) buildIndex();
-    const b = App.openModal("Rechercher", `<input class="search-input" type="search" placeholder="Un mot, une expression, une notion… (ex. : rivière, ironie, passé simple)" aria-label="Rechercher"><div class="small" style="margin-top:6px">Recherche dans le texte, le lexique et toutes les sections${document.documentElement.classList.contains("prof") ? ", livret du professeur compris" : ""}.</div><div class="results"></div>`);
+    const b = App.openModal("Rechercher", `<input class="search-input" type="search" placeholder="Un mot, une expression, une notion… (ex. : rivière, ironie, passé simple)" aria-label="Rechercher"><div class="small" style="margin-top:6px">Recherche dans le texte, le lexique, toutes les sections et les explications détaillées.</div><div class="results"></div>`);
     const inp = App.$("input", b), res = App.$(".results", b);
     const run = () => {
       const q = App.noAccent(App.norm(inp.value.trim()).toLowerCase());
       if (q.length < 2) { res.innerHTML = ""; return; }
-      const prof = document.documentElement.classList.contains("prof");
-      const hits = index.filter((x) => (!x.prof || prof) && App.noAccent(App.norm(x.text).toLowerCase()).includes(q)).slice(0, 60);
+      const hits = index.filter((x) => App.noAccent(App.norm(x.text).toLowerCase()).includes(q)).slice(0, 60);
       res.innerHTML = hits.length ? "" : `<p class="small">Aucun résultat.</p>`;
       hits.forEach((h) => {
         const t = App.norm(h.text), pos = App.noAccent(t.toLowerCase()).indexOf(q);
@@ -80,11 +79,12 @@
     const n = App.noAccent(App.norm(needle).toLowerCase()).slice(0, 40);
     // ouvrir les blocs repliés qui contiennent le texte
     App.$$("#main details").forEach((d) => { if (App.noAccent(App.norm(d.textContent).toLowerCase()).includes(n)) d.open = true; });
+    App.$$("#main .reveal").forEach((d) => { if (App.noAccent(App.norm(d.textContent).toLowerCase()).includes(n)) d.classList.add("show"); });
     const walker = document.createTreeWalker(App.$("#main"), NodeFilter.SHOW_ELEMENT);
     let best = null;
     while (walker.nextNode()) {
       const el = walker.currentNode;
-      if (/SCRIPT|STYLE|BUTTON/.test(el.tagName) || el.offsetParent === null) continue;
+      if (/SCRIPT|STYLE|BUTTON/.test(el.tagName)) continue;
       if (App.noAccent(App.norm(el.textContent).toLowerCase()).includes(n)) best = el; // le plus profond
     }
     if (best) { best.scrollIntoView({ behavior: "smooth", block: "center" }); best.classList.add("hit"); setTimeout(() => best.classList.remove("hit"), 2200); }

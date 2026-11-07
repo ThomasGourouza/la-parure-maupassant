@@ -22,23 +22,35 @@
     return t;
   };
 
-  /** Bouton « Voir la réponse » + bloc masqué. */
-  Ex.reveal = (html, label = "Voir la réponse", onShow) => {
-    const wrap = App.el(`<div></div>`);
-    const btn = App.el(`<button class="btn sm ghost eleve-only">${label}</button>`);
-    const box = App.el(`<div class="reveal answer"><div class="box-title">Corrigé</div></div>`);
-    box.append(typeof html === "string" ? App.frag(html) : html);
+  /** Nœuds d'explication (sans les conseils réservés à l'enseignant ni les titres). */
+  Ex.cleanNodes = (nodes) => (nodes || []).filter((n) => n && !(n.classList && n.classList.contains("tip")) && !/^H[1-3]$/.test(n.tagName)).map((n) => n.cloneNode(true));
+
+  /**
+   * « Voir la réponse » en deux temps :
+   * 1) le corrigé court (ou, à défaut, la réponse du livret) ;
+   * 2) « Comprendre la réponse » : réponse détaillée et explications (« Pourquoi ? »).
+   */
+  Ex.reveal = (short, detailNodes, { label = "Voir la réponse", detailLabel = "Comprendre la réponse", onShow, all } = {}) => {
+    const detail = Ex.cleanNodes(detailNodes);
+    const wrap = App.el(`<div class="reveal-wrap"></div>`);
+    const btn = App.el(`<button class="btn sm ghost reveal-btn">${label}</button>`);
+    const box = App.el(`<div class="reveal"></div>`);
+    if (short) { const a = App.el(`<div class="answer"><div class="box-title">Corrigé</div></div>`); a.append(typeof short === "string" ? App.frag(short) : short); box.append(a); }
+    else if (all) { detail.splice(0).forEach((n) => box.append(n)); }
+    else if (detail.length) { const k = detail.findIndex((n) => n.classList && (n.classList.contains("answer") || n.classList.contains("schema"))); box.append(detail.splice(k < 0 ? 0 : k, 1)[0]); }
+    if (detail.length) {
+      const b2 = App.el(`<button class="btn sm ghost">${detailLabel}</button>`);
+      const d = App.el(`<div class="reveal detail"></div>`); detail.forEach((n) => d.append(n));
+      if (short) d.querySelectorAll(".answer > .box-title").forEach((t) => { if (/^Réponse$/.test(t.textContent.trim())) t.textContent = "Réponse détaillée"; });
+      b2.onclick = () => { const s = d.classList.toggle("show"); b2.textContent = s ? "Masquer l’explication" : detailLabel; };
+      const bar = App.el(`<div class="ex-bar" style="margin-top:0"></div>`); bar.append(b2); box.append(bar, d);
+    }
     btn.onclick = () => { const s = box.classList.toggle("show"); btn.textContent = s ? "Masquer la réponse" : label; if (s && onShow) onShow(); };
     wrap.append(btn, box); return { wrap, btn, box };
   };
 
-  /** Bloc du livret du professeur (visible en mode professeur). */
-  Ex.profBlock = (nodes) => {
-    const d = App.el(`<div class="prof-block"></div>`);
-    if (!nodes) return d;
-    if (typeof nodes === "string") d.append(App.frag(nodes)); else nodes.forEach((n) => d.append(n.cloneNode(true)));
-    return d;
-  };
+  /** Bloc d'explications toujours visible (sans les conseils réservés à l'enseignant). */
+  Ex.detail = (nodes) => { const d = App.el(`<div class="detail"></div>`); Ex.cleanNodes(nodes).forEach((n) => d.append(n)); return d; };
 
   /** Champs à compléter avec correction automatique. items: [{input, accepted:[...], note}] */
   Ex.checkable = (container, items, { key, tab, item, after } = {}) => {
@@ -181,7 +193,7 @@
       root.querySelector(".n").textContent = n + (n > 1 ? " mots" : " mot");
       const m = root.querySelector(".meter"); m.querySelector("i").style.width = Math.min(100, (n / max) * 100) + "%";
       m.classList.toggle("okk", n >= min && n <= max); m.classList.toggle("over", n > max * 1.1);
-      const unlocked = n >= min || document.documentElement.classList.contains("prof");
+      const unlocked = n >= min;
       modelBtn.disabled = !unlocked; modelBtn.style.opacity = unlocked ? 1 : .5;
       hint.textContent = unlocked ? "" : `La copie modèle se débloque à partir de ${min} mots.`;
       if (n >= min) App.done(tab, item);

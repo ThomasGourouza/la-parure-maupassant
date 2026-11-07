@@ -45,7 +45,7 @@
   };
   App.tabRatio = (t) => { const p = App.progress[t.id] || {}; const n = t.items.filter((i) => p[i]).length; return t.items.length ? n / t.items.length : 0; };
   App.updateProgress = () => {
-    const tabs = App.tabs.filter((t) => !t.profOnly);
+    const tabs = App.tabs.filter((t) => !t.hidden);
     const r = tabs.reduce((a, t) => a + App.tabRatio(t), 0) / tabs.length;
     const pct = Math.round(r * 100);
     App.$("#gbar").style.width = pct + "%"; App.$("#gpct").textContent = pct + " %";
@@ -80,7 +80,6 @@
   App.route = () => {
     const [id, sub] = decodeURIComponent(location.hash.slice(1) || App.get("last", "accueil")).split("/");
     let tab = App.tabs.find((t) => t.id === id) || App.tabs[0];
-    if (tab.profOnly && !root.classList.contains("prof")) tab = App.tabs[0];
     App.current = tab.id; App.set("last", tab.id + (sub ? "/" + sub : ""));
     App.$$("#tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.id === tab.id)));
     const btn = App.$(`#tab-${tab.id}`); if (btn) btn.scrollIntoView({ block: "nearest", inline: "nearest" });
@@ -99,8 +98,8 @@
     t.classList.add("flash"); setTimeout(() => t.classList.remove("flash"), 1700);
   };
   App.addPager = (view, tab) => {
-    const vis = App.tabs.filter((t) => !t.profOnly || root.classList.contains("prof"));
-    const i = vis.indexOf(tab); const prev = vis[i - 1], next = vis[i + 1];
+    const vis = App.tabs.filter((t) => !t.hidden);
+    const i = vis.indexOf(tab); if (i < 0) return; const prev = vis[i - 1], next = vis[i + 1];
     const pg = App.el(`<div class="pager no-print"><span></span><span></span></div>`);
     if (prev) { const b = App.el(`<button class="btn ghost">← ${App.esc(prev.label)}</button>`); b.onclick = () => App.go(prev.id); pg.children[0].replaceWith(b); }
     if (next) { const b = App.el(`<button class="btn">${App.esc(next.label)} →</button>`); b.onclick = () => App.go(next.id); pg.children[1].replaceWith(b); }
@@ -125,8 +124,6 @@
       ${btn("tb-mine", "notes", "Mes notes", "Mes mots, surlignages et notes")}
       ${btn("tb-annot", "annot", "Annotations", "Afficher ou masquer les annotations du texte")}
       <span class="tb-sep"></span>
-      ${btn("tb-prof", "prof", "Mode professeur", "Afficher les corrigés détaillés, explications et conseils du livret du professeur", "prof")}
-      <span class="tb-sep"></span>
       <a class="tb" href="pdf/La_Parure_dossier_eleve_B2-C1.pdf" download title="Télécharger le dossier élève (PDF)">${App.icon("pdf")}<span class="lbl">PDF élève</span></a>
       <a class="tb" href="pdf/La_Parure_livret_professeur_B2-C1.pdf" download title="Télécharger le livret du professeur (PDF)">${App.icon("pdf")}<span class="lbl">Livret prof</span></a>
       ${btn("tb-print", "print", "Imprimer", "Imprimer cette page")}
@@ -137,11 +134,6 @@
     App.$("#tb-fsp").onclick = () => App.setFs(1);
     App.$("#tb-airy").onclick = () => press("tb-airy", App.toggleClass("airy", "airy"));
     App.$("#tb-annot").onclick = () => { const off = App.toggleClass("no-annot", "noAnnot"); press("tb-annot", !off); };
-    App.$("#tb-prof").onclick = () => {
-      const on = App.toggleClass("prof", "prof"); press("tb-prof", on);
-      App.toast(on ? "Mode professeur activé : corrigés détaillés, explications et conseils affichés" : "Mode élève");
-      App.route();
-    };
     App.$("#tb-focus").onclick = () => { const on = root.classList.toggle("focus"); press("tb-focus", on); };
     App.$("#tb-print").onclick = () => { App.$$(".reveal").forEach((r) => r.classList.add("show")); window.print(); };
     App.$("#tb-speak").onclick = () => App.speakSmart();
@@ -154,12 +146,12 @@
       App.$("#do-reset", b).onclick = () => { ["answers", "progress", "hl", "words", "last"].forEach((k) => App.set(k, k === "last" ? "accueil" : {}));
         App.answers = {}; App.progress = {}; App.closeModal(); App.updateProgress(); App.route(); App.toast("Données effacées"); };
     };
-    press("tb-airy", root.classList.contains("airy")); press("tb-annot", !root.classList.contains("no-annot")); press("tb-prof", root.classList.contains("prof"));
+    press("tb-airy", root.classList.contains("airy")); press("tb-annot", !root.classList.contains("no-annot"));
   }
 
   function buildTabs() {
     const nav = App.$("#tabs");
-    nav.innerHTML = App.tabs.map((t) => `<button role="tab" id="tab-${t.id}" data-id="${t.id}" class="${t.profOnly ? "prof-only" : ""}" aria-selected="false"><span class="dot"></span>${App.esc(t.label)}</button>`).join("");
+    nav.innerHTML = App.tabs.filter((t) => !t.hidden).map((t) => `<button role="tab" id="tab-${t.id}" data-id="${t.id}" aria-selected="false"><span class="dot"></span>${App.esc(t.label)}</button>`).join("");
     nav.onclick = (e) => { const b = e.target.closest("button"); if (b) App.go(b.dataset.id); };
   }
 
@@ -170,7 +162,7 @@
     if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key === "/") { e.preventDefault(); App.openSearch(); }
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-      const vis = App.tabs.filter((t) => !t.profOnly || root.classList.contains("prof"));
+      const vis = App.tabs.filter((t) => !t.hidden);
       const i = vis.findIndex((t) => t.id === App.current); const n = vis[i + (e.key === "ArrowRight" ? 1 : -1)];
       if (n) App.go(n.id);
     }

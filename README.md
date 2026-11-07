@@ -11,7 +11,8 @@ le *dossier élève* et le *livret du professeur* (dans `pdf/`).
 - **Exercices interactifs** : compréhension (31 questions, vrai/faux, schéma narratif), vocabulaire (glossaire filtrable, cartes mémoire, classement, association, phrases à trous), grammaire (conjugaison corrigée et justifiée, subjonctif…).
 - **Analyse** : explications linéaires avec citations cliquables synchronisées au texte, axes de lecture, frise, graphiques.
 - **Productions** : éditeur avec compteur de mots, copies modèles, grilles d'auto-évaluation, minuteur pour l'oral.
-- **Mode professeur** (interrupteur dans la barre d'outils) : réponses détaillées, « Pourquoi ? », conseils pédagogiques, copies modèles, plans C1, clé rapide.
+- **Travail en autonomie** : sous chaque question et exercice, « Voir la réponse » affiche le corrigé, puis « Comprendre la réponse » l'explication détaillée du livret (reformulée pour l'élève). Copies modèles et explication rédigée du dénouement se débloquent après rédaction.
+- **Espace enseignant** (`#enseignant`, lien en pied de page) : mode d'emploi, conseils pédagogiques, clé rapide.
 - Barre d'outils : taille du texte, police aérée, recherche (`/`), mode concentration, impression, téléchargement des PDF.
 - Progression et réponses enregistrées localement dans le navigateur (aucun serveur).
 
@@ -25,13 +26,14 @@ js/reader.js        lecteur annoté
 js/exercises.js     moteurs d'exercices
 js/tools.js         voix, recherche, « mes notes »
 js/views.js         onglets
-data/*.js           texte, lexique, annotations, contenus élève (eleve.js) et professeur (prof.js)
+data/*.js           texte, lexique, annotations, contenus élève (eleve.js) et explications du livret (explications.js)
 sources/            sources HTML des PDF et scripts de génération
 pdf/                dossier élève et livret du professeur
 ```
 
-`data/texte.js`, `data/eleve.js` et `data/prof.js` sont générés par `python3 sources/build_site.py`
-à partir des sources des PDF.
+`data/texte.js`, `data/eleve.js` et `data/explications.js` sont générés par `python3 sources/build_site.py`
+à partir des sources des PDF ; `sources/site_rewrites.py` reformule les explications du livret pour l'élève
+(le livret PDF reste inchangé).
 
 ## Lancer en local
 
