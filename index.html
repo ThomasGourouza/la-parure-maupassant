@@ -9,9 +9,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%237a1f2b'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23fff' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 <script>
-  // Applique les préférences avant l'affichage (évite le flash de thème).
+  // Applique les préférences avant l'affichage (évite un affichage décalé).
   (function () { try { var p = JSON.parse(localStorage.getItem("parure:prefs") || "{}");
-    var r = document.documentElement; if (p.theme) r.dataset.theme = p.theme; if (p.fs) r.style.setProperty("--fs", p.fs + "px");
+    var r = document.documentElement; if (p.fs) r.style.setProperty("--fs", p.fs + "px");
     if (p.airy) r.classList.add("airy"); if (p.prof) r.classList.add("prof"); if (p.noAnnot) r.classList.add("no-annot"); } catch (e) {} })();
 </script>
 </head>

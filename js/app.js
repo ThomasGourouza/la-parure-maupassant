@@ -18,7 +18,6 @@
   App.icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
   const ICONS = {
     minus: '<path d="M5 12h14"/>', plus: '<path d="M12 5v14M5 12h14"/>',
-    theme: '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>',
     font: '<path d="M4 20 10 4l6 16M6.5 14h7"/><path d="M17 20v-6m-2 2h4"/>', speak: '<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',
     stop: '<rect x="6" y="6" width="12" height="12" rx="1"/>', focus: '<path d="M3 8V3h5M21 8V3h-5M3 16v5h5M21 16v5h-5"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>', notes: '<path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/>',
@@ -109,18 +108,15 @@
   };
 
   /* ---------- Préférences ---------- */
-  App.setTheme = (t) => { App.prefs.theme = t; if (t) root.dataset.theme = t; else delete root.dataset.theme; App.savePrefs(); };
   App.setFs = (d) => { const fs = Math.min(24, Math.max(14, (App.prefs.fs || 17) + d)); App.prefs.fs = fs; root.style.setProperty("--fs", fs + "px"); App.savePrefs(); App.toast("Taille du texte : " + fs + " px"); };
   App.toggleClass = (cls, key, on) => { const v = on ?? !root.classList.contains(cls); root.classList.toggle(cls, v); App.prefs[key] = v; App.savePrefs(); return v; };
 
   /* ---------- Barre d'outils ---------- */
   function buildToolbar() {
     const tb = App.$("#toolbar");
-    const themes = [["", "Auto"], ["light", "Clair"], ["sepia", "Sépia"], ["dark", "Sombre"]];
     const btn = (id, icon, label, title, extra = "") => `<button class="tb ${extra}" id="${id}" title="${title}" aria-label="${title}">${App.icon(icon)}<span class="lbl">${label}</span></button>`;
     tb.innerHTML = `
       <span class="tb-group">${btn("tb-fsm", "minus", "A−", "Réduire le texte")}${btn("tb-fsp", "plus", "A+", "Agrandir le texte")}</span>
-      ${btn("tb-theme", "theme", "Thème", "Changer de thème (auto, clair, sépia, sombre)")}
       ${btn("tb-airy", "font", "Police aérée", "Police plus lisible et espacée")}
       <span class="tb-sep"></span>
       ${btn("tb-speak", "speak", "Écouter", "Lire à voix haute la sélection ou le texte")}
@@ -139,7 +135,6 @@
     const press = (id, v) => App.$("#" + id).setAttribute("aria-pressed", String(!!v));
     App.$("#tb-fsm").onclick = () => App.setFs(-1);
     App.$("#tb-fsp").onclick = () => App.setFs(1);
-    App.$("#tb-theme").onclick = () => { const i = themes.findIndex((t) => t[0] === (App.prefs.theme || "")); const n = themes[(i + 1) % themes.length]; App.setTheme(n[0]); App.toast("Thème : " + n[1]); };
     App.$("#tb-airy").onclick = () => press("tb-airy", App.toggleClass("airy", "airy"));
     App.$("#tb-annot").onclick = () => { const off = App.toggleClass("no-annot", "noAnnot"); press("tb-annot", !off); };
     App.$("#tb-prof").onclick = () => {

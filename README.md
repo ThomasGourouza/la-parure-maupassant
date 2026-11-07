@@ -12,14 +12,14 @@ le *dossier élève* et le *livret du professeur* (dans `pdf/`).
 - **Analyse** : explications linéaires avec citations cliquables synchronisées au texte, axes de lecture, frise, graphiques.
 - **Productions** : éditeur avec compteur de mots, copies modèles, grilles d'auto-évaluation, minuteur pour l'oral.
 - **Mode professeur** (interrupteur dans la barre d'outils) : réponses détaillées, « Pourquoi ? », conseils pédagogiques, copies modèles, plans C1, clé rapide.
-- Barre d'outils : taille du texte, thèmes clair / sépia / sombre, police aérée, recherche (`/`), mode concentration, impression, téléchargement des PDF.
+- Barre d'outils : taille du texte, police aérée, recherche (`/`), mode concentration, impression, téléchargement des PDF.
 - Progression et réponses enregistrées localement dans le navigateur (aucun serveur).
 
 ## Structure
 
 ```
 index.html          coquille de l'application
-css/style.css       charte graphique des PDF, thèmes, responsive, impression
+css/style.css       charte graphique des PDF (sépia), responsive, impression
 js/app.js           état, routeur, barre d'outils, panneau, progression
 js/reader.js        lecteur annoté
 js/exercises.js     moteurs d'exercices
